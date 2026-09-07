@@ -33,7 +33,6 @@ npm run dev
 | -------------------------------------- | ----------- | ------------------------------------------------------------------------------ |
 | `NEXT_PUBLIC_SITE_URL`                 | Sí          | Canónicas, sitemap y Open Graph. Sin ella `robots.txt` bloquea la indexación.  |
 | `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`     | Sí          | Envío del formulario. Key gratis en [web3forms.com](https://web3forms.com).    |
-| `CONTACT_TO_EMAIL`                     | No          | Referencia local; el destino real lo defines al crear la key en Web3Forms.    |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | No          | Verificación de Google Search Console.                                         |
 
 ### Activar el correo (2 minutos)
