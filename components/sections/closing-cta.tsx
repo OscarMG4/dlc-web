@@ -12,7 +12,7 @@ export function ClosingCta() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
         <ProjectImage
-          src="/projects/algarrobo/parque-aereo.png"
+          src="/projects/algarrobo/parque-aereo.webp"
           alt="Vista aérea del parque central de Finca Algarrobo"
           fill
           tier="hero"

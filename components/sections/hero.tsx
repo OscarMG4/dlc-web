@@ -9,6 +9,15 @@ import { Container } from "@/components/ui/container";
 import { hero, project, stats } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
+// Alineado con el breakpoint `lg` de Tailwind: debajo de 1024px usa el
+// video liviano; a partir de ahí, el de escritorio.
+const DESKTOP_MQ = "(min-width: 1024px)";
+
+function resolveHeroVideoSrc() {
+  if (typeof window === "undefined") return hero.videoMobile;
+  return window.matchMedia(DESKTOP_MQ).matches ? hero.video : hero.videoMobile;
+}
+
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -25,9 +34,28 @@ export function Hero() {
     const video = videoRef.current;
     if (!video || shouldReduceMotion) return;
 
-    video.play().catch(() => {
-      // El navegador puede bloquear autoplay; el poster cubre ese caso.
-    });
+    const applySrc = () => {
+      const next = resolveHeroVideoSrc();
+      const current = video.getAttribute("src") ?? "";
+      if (current.endsWith(next)) {
+        video.play().catch(() => {
+          // El navegador puede bloquear autoplay; el poster cubre ese caso.
+        });
+        return;
+      }
+
+      video.setAttribute("src", next);
+      video.load();
+      video.play().catch(() => {
+        // El navegador puede bloquear autoplay; el poster cubre ese caso.
+      });
+    };
+
+    applySrc();
+
+    const mq = window.matchMedia(DESKTOP_MQ);
+    mq.addEventListener("change", applySrc);
+    return () => mq.removeEventListener("change", applySrc);
   }, [shouldReduceMotion]);
 
   return (
@@ -58,12 +86,10 @@ export function Hero() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             poster={hero.poster}
             aria-label={hero.imageAlt}
-          >
-            <source src={hero.video} type="video/mp4" />
-          </video>
+          />
         )}
       </motion.div>
 

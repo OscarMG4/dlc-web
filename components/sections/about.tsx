@@ -13,7 +13,7 @@ export function About() {
             <div className="relative">
               <div className="group relative aspect-[4/5] overflow-hidden rounded-lg sm:aspect-[3/4]">
                 <ProjectImage
-                  src="/projects/algarrobo/alameda.png"
+                  src="/projects/algarrobo/alameda.webp"
                   alt="Alameda arborizada dentro del condominio Finca Algarrobo"
                   fill
                   tier="featured"
@@ -25,7 +25,7 @@ export function About() {
               <div className="absolute -right-4 -bottom-4 hidden w-[38%] overflow-hidden rounded-lg border-[6px] border-surface sm:block">
                 <div className="relative aspect-[4/3]">
                   <ProjectImage
-                    src="/projects/algarrobo/pileta.png"
+                    src="/projects/algarrobo/pileta.webp"
                     alt="Pileta ornamental del parque central"
                     fill
                     tier="gallery"

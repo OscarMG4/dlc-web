@@ -296,7 +296,7 @@ export const project = {
   summary:
     "Un condominio campestre pensado para familias que buscan aire libre, seguridad y una inversión que crece. Áreas comunes ejecutadas, ingreso controlado y alameda arborizada.",
   logo: "/brand/algarrobo-horizontal.png",
-  cover: "/projects/algarrobo/vista-aerea.png",
+  cover: "/projects/algarrobo/vista-aerea.webp",
   highlights: [
     { label: "Área por lote", value: "500 m²" },
     { label: "Modalidad", value: "Venta directa" },
@@ -306,37 +306,37 @@ export const project = {
     {
       title: "Parque central con pileta",
       description: "Corazón del condominio con pileta ornamental y caminería.",
-      image: "/projects/algarrobo/pileta.png",
+      image: "/projects/algarrobo/pileta.webp",
     },
     {
       title: "Juegos infantiles",
       description: "Zona de juegos con piso seguro y sombra natural.",
-      image: "/projects/algarrobo/juegos-infantiles.png",
+      image: "/projects/algarrobo/juegos-infantiles.webp",
     },
     {
       title: "Cancha de fútbol",
       description: "Losa deportiva cercada para partidos de la comunidad.",
-      image: "/projects/algarrobo/cancha-futbol.png",
+      image: "/projects/algarrobo/cancha-futbol.webp",
     },
     {
       title: "Losa de básquet",
       description: "Cancha multiuso iluminada para uso nocturno.",
-      image: "/projects/algarrobo/losa-basquet.png",
+      image: "/projects/algarrobo/losa-basquet.webp",
     },
     {
       title: "Gimnasio al aire libre",
       description: "Estaciones de ejercicio integradas al área verde.",
-      image: "/projects/algarrobo/gimnasio-aire-libre.png",
+      image: "/projects/algarrobo/gimnasio-aire-libre.webp",
     },
     {
       title: "Zona de hamacas",
       description: "Espacio de descanso bajo algarrobos y árboles nativos.",
-      image: "/projects/algarrobo/zona-hamacas.png",
+      image: "/projects/algarrobo/zona-hamacas.webp",
     },
     {
       title: "Alameda arborizada",
       description: "Vías internas con arborización y veredas peatonales.",
-      image: "/projects/algarrobo/alameda.png",
+      image: "/projects/algarrobo/alameda.webp",
     },
   ] satisfies Amenity[],
 } as const;
@@ -346,8 +346,11 @@ export const hero = {
   titleAccent: "casa de campo",
   subtitle:
     "Lotes de 500 m² con áreas comunes, ingreso controlado y más de 250 familias que ya construyen.",
+  // Escritorio: máster recodificado. Móvil: variante liviana para no
+  // descargar ~240 MB en datos celulares.
   video: "/projects/algarrobo/videorender.mp4",
-  poster: "/projects/algarrobo/hito-ingreso.png",
+  videoMobile: "/projects/algarrobo/videorender-mobile.mp4",
+  poster: "/projects/algarrobo/hito-ingreso.webp",
   imageAlt: "Recorrido virtual del condominio campestre Finca Algarrobo en Chiclayo",
 } as const;
 
@@ -359,57 +362,57 @@ export type GalleryItem = {
 
 export const gallery: GalleryItem[] = [
   {
-    src: "/projects/algarrobo/vista-aerea.png",
+    src: "/projects/algarrobo/vista-aerea.webp",
     alt: "Vista aérea del condominio Finca Algarrobo con lotes y áreas verdes",
     caption: "Vista aérea del proyecto",
   },
   {
-    src: "/projects/algarrobo/ingreso-control.png",
+    src: "/projects/algarrobo/ingreso-control.webp",
     alt: "Ingreso principal de Finca Algarrobo con caseta de control y portón",
     caption: "Ingreso con control",
   },
   {
-    src: "/projects/algarrobo/hito-ingreso.png",
+    src: "/projects/algarrobo/hito-ingreso.webp",
     alt: "Hito de ingreso con el nombre Finca Algarrobo rodeado de jardines",
     caption: "Hito de bienvenida",
   },
   {
-    src: "/projects/algarrobo/parque-aereo.png",
+    src: "/projects/algarrobo/parque-aereo.webp",
     alt: "Vista aérea del parque central con pileta y juegos",
     caption: "Parque central",
   },
   {
-    src: "/projects/algarrobo/pileta.png",
+    src: "/projects/algarrobo/pileta.webp",
     alt: "Pileta ornamental del parque central con bancas y caminería",
     caption: "Pileta ornamental",
   },
   {
-    src: "/projects/algarrobo/juegos-infantiles.png",
+    src: "/projects/algarrobo/juegos-infantiles.webp",
     alt: "Zona de juegos infantiles con resbaladera y estructuras de escalada",
     caption: "Juegos infantiles",
   },
   {
-    src: "/projects/algarrobo/cancha-futbol.png",
+    src: "/projects/algarrobo/cancha-futbol.webp",
     alt: "Cancha de fútbol cercada vista desde arriba",
     caption: "Cancha de fútbol",
   },
   {
-    src: "/projects/algarrobo/losa-basquet.png",
+    src: "/projects/algarrobo/losa-basquet.webp",
     alt: "Losa deportiva de básquet con postes de iluminación",
     caption: "Losa de básquet",
   },
   {
-    src: "/projects/algarrobo/gimnasio-aire-libre.png",
+    src: "/projects/algarrobo/gimnasio-aire-libre.webp",
     alt: "Estaciones de gimnasio al aire libre entre árboles",
     caption: "Gimnasio al aire libre",
   },
   {
-    src: "/projects/algarrobo/zona-hamacas.png",
+    src: "/projects/algarrobo/zona-hamacas.webp",
     alt: "Zona de hamacas bajo algarrobos con personas descansando",
     caption: "Zona de hamacas",
   },
   {
-    src: "/projects/algarrobo/alameda.png",
+    src: "/projects/algarrobo/alameda.webp",
     alt: "Alameda interna arborizada con veredas y vehículos",
     caption: "Alameda arborizada",
   },

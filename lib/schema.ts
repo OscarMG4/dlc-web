@@ -24,7 +24,7 @@ export function organizationSchema(): Record<string, unknown> {
     email: company.email,
     telephone: company.phoneE164,
     logo: absoluteUrl("/brand/dlc-logo-black.png"),
-    image: absoluteUrl("/projects/algarrobo/vista-aerea.png"),
+    image: absoluteUrl("/projects/algarrobo/vista-aerea.webp"),
     areaServed: `${company.city}, ${company.region}, ${company.country}`,
     address: {
       "@type": "PostalAddress",

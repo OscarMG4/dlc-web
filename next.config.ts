@@ -1,11 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // El sitio se sirve como HTML estático desde Apache (cPanel), sin runtime de Node.
+  output: "export",
   images: {
-    formats: ["image/avif", "image/webp"],
-    // Tamaños que pide el layout; Next no escala por encima del archivo original.
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 2560, 3840],
-    imageSizes: [128, 256, 384, 512, 640, 768, 1024],
+    // Sin servidor no hay optimizador: las imágenes se sirven tal cual están
+    // en public/, ya convertidas a WebP en su resolución final.
+    unoptimized: true,
   },
 };
 
