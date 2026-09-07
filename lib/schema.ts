@@ -1,5 +1,17 @@
-import { company, project } from "@/lib/content";
+import { company, localSeo, mapLinkUrl, project } from "@/lib/content";
 import { absoluteUrl, siteConfig } from "@/lib/site";
+
+function geoPoint(point: { latitude: number; longitude: number } | null) {
+  if (!point) return {};
+
+  return {
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: point.latitude,
+      longitude: point.longitude,
+    },
+  };
+}
 
 export function organizationSchema(): Record<string, unknown> {
   return {
@@ -21,6 +33,17 @@ export function organizationSchema(): Record<string, unknown> {
       addressRegion: company.region,
       addressCountry: "PE",
     },
+    ...geoPoint(localSeo.officeGeo),
+    hasMap: mapLinkUrl,
+    ...(localSeo.priceRange ? { priceRange: localSeo.priceRange } : {}),
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [...localSeo.openingHours.days],
+        opens: localSeo.openingHours.opens,
+        closes: localSeo.openingHours.closes,
+      },
+    ],
     sameAs: [company.social.facebook, company.social.instagram],
   };
 }
@@ -52,6 +75,7 @@ export function projectSchema(): Record<string, unknown> {
       addressRegion: company.region,
       addressCountry: "PE",
     },
+    ...geoPoint(localSeo.projectGeo),
     amenityFeature: project.amenities.map((amenity) => ({
       "@type": "LocationFeatureSpecification",
       name: amenity.title,

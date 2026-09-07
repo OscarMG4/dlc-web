@@ -20,6 +20,28 @@ export const company = {
   },
 } as const;
 
+type GeoPoint = { latitude: number; longitude: number };
+
+export const localSeo: {
+  officeGeo: GeoPoint | null;
+  projectGeo: GeoPoint | null;
+  priceRange: string | null;
+  openingHours: {
+    days: readonly string[];
+    opens: string;
+    closes: string;
+  };
+} = {
+  officeGeo: { latitude: -6.785285467835872, longitude: -79.83614267116401 },
+  projectGeo: null,
+  priceRange: null,
+  openingHours: {
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "09:00",
+    closes: "18:00",
+  },
+};
+
 export const whatsappQuickQuestions = [
   {
     id: "general",
