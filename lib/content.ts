@@ -208,16 +208,40 @@ export const completedProjects = [
   },
 ] as const;
 
-export const campoora = {
-  name: "Finca Campoora",
-  type: "Condominio ecológico",
-  status: "Proyecto realizado",
-  tagline: "Así desarrolla y entrega Grupo DLC",
+export const testimonials = {
+  eyebrow: "Voces del campo",
+  title: "Historias que nacen en el terreno",
   description:
-    "Plano de las etapas 1, 2 y 3 de Finca Campoora, uno de los condominios ecológicos impulsados por la marca en Lambayeque.",
-  plan: "/projects/campoora/plano-lotes.webp",
-  planAlt:
-    "Plano de lotización de Finca Campoora, etapas 1, 2 y 3, con lotes, áreas comunes e ingresos",
+    "Visitas, recorridos y cierres con el mismo cuidado: cercanía, claridad y acompañamiento real.",
+  items: [
+    {
+      quote:
+        "Fuimos a conocer el terreno en familia y se notó la transparencia. Nos explicaron todo con claridad y nos sentimos acompañados desde el primer día.",
+      name: "Una tarde bajo el algarrobo",
+      role: "Primera visita al condominio",
+      image: "/reviews/familia-visita.webp",
+      imageAlt:
+        "Familia junto al equipo de Grupo DLC durante una visita al terreno",
+    },
+    {
+      quote:
+        "Ver el plano en el mismo terreno nos ayudó a imaginar nuestro lote. El equipo fue muy atento y resolvió todas nuestras dudas al instante.",
+      name: "El plano cobró vida",
+      role: "Recorrido guiado en campo",
+      image: "/reviews/visita-terreno.webp",
+      imageAlt:
+        "Clientes y asesores de Grupo DLC revisando el plano en el terreno",
+    },
+    {
+      quote:
+        "Cerramos con confianza. En la oficina nos entregaron la información completa y el trato fue cercano, profesional y sin complicaciones.",
+      name: "De la consulta al sí",
+      role: "Cierre en oficina DLC",
+      image: "/reviews/entrega-oficina.webp",
+      imageAlt:
+        "Asesor de Grupo DLC con un cliente satisfecho en la oficina",
+    },
+  ],
 } as const;
 
 /** Solo hechos ya comunicados por la marca (no inventar beneficios). */
@@ -314,9 +338,6 @@ export const project = {
   cover: "/projects/algarrobo/vista-aerea.webp",
   plan: "/projects/algarrobo/plano-lotes.webp",
   planAlt: "Plano de lotización y vías de Finca Algarrobo",
-  planMaster: "/projects/algarrobo/plano-master.webp",
-  planMasterAlt:
-    "Plano maestro de Finca Algarrobo con amenidades, lotes y leyenda de disponibilidad",
   highlights: [
     { label: "Área por lote", value: "500 m²" },
     { label: "Modalidad", value: "Venta directa" },
