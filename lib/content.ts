@@ -207,6 +207,18 @@ export const completedProjects = [
   },
 ] as const;
 
+export const campoora = {
+  name: "Finca Campoora",
+  type: "Condominio ecológico",
+  status: "Proyecto realizado",
+  tagline: "Así desarrolla y entrega Grupo DLC",
+  description:
+    "Plano de las etapas 1, 2 y 3 de Finca Campoora, uno de los condominios ecológicos impulsados por la marca en Lambayeque.",
+  plan: "/projects/campoora/plano-lotes.webp",
+  planAlt:
+    "Plano de lotización de Finca Campoora, etapas 1, 2 y 3, con lotes, áreas comunes e ingresos",
+} as const;
+
 /** Solo hechos ya comunicados por la marca (no inventar beneficios). */
 export const purchaseIncludes = [
   {
@@ -299,6 +311,11 @@ export const project = {
     "Bajo la sombra de los algarrobos nace un hogar para criar, celebrar y quedarse. Calles arborizadas, espacios para compartir y la calma de invertir en un lugar con alma.",
   logo: "/brand/algarrobo-horizontal-white.png",
   cover: "/projects/algarrobo/vista-aerea.webp",
+  plan: "/projects/algarrobo/plano-lotes.webp",
+  planAlt: "Plano de lotización y vías de Finca Algarrobo",
+  planMaster: "/projects/algarrobo/plano-master.webp",
+  planMasterAlt:
+    "Plano maestro de Finca Algarrobo con amenidades, lotes y leyenda de disponibilidad",
   highlights: [
     { label: "Área por lote", value: "500 m²" },
     { label: "Modalidad", value: "Venta directa" },

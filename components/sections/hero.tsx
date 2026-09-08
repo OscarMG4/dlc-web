@@ -106,7 +106,7 @@ export function Hero() {
         ) : (
           <video
             ref={videoRef}
-            className="absolute inset-0 size-full object-cover object-[center_30%] sm:object-center brightness-[1.05] contrast-[1.02]"
+            className="absolute inset-0 size-full object-cover object-[center_30%] sm:object-center brightness-[1.05] contrast-[1.03]"
             autoPlay
             muted
             loop
@@ -119,15 +119,15 @@ export function Hero() {
       </div>
 
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/90 sm:bg-gradient-to-r sm:from-black sm:via-black/80 sm:to-black/30 lg:via-black/75 lg:to-black/20"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/62 via-black/42 to-black/85 sm:bg-gradient-to-r sm:from-black/88 sm:via-black/62 sm:to-black/22 lg:from-black/84 lg:via-black/55 lg:to-black/14"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/72 via-transparent to-black/32"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_15%_40%,rgba(253,185,12,0.1),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_15%_40%,rgba(253,185,12,0.09),transparent_55%)]"
         aria-hidden
       />
 
@@ -187,7 +187,7 @@ export function Hero() {
             </motion.p>
 
             <motion.div
-              className="relative mt-5 min-h-0 overflow-hidden rounded-xl shadow-[0_24px_60px_-28px_rgba(0,0,0,0.7)] ring-1 ring-white/15 sm:mt-6 sm:rounded-2xl lg:mt-5 lg:max-h-[min(38vh,340px)] xl:max-h-[min(42vh,400px)]"
+              className="relative mt-5 min-h-0 overflow-hidden rounded-xl border border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.3),0_24px_60px_-28px_rgba(0,0,0,0.7)] sm:mt-6 sm:rounded-2xl lg:mt-5 lg:max-h-[min(38vh,340px)] xl:max-h-[min(42vh,400px)]"
               variants={fadeUp}
               transition={{ ...transition, duration: 1.55 }}
             >
@@ -220,30 +220,30 @@ export function Hero() {
                 <ButtonLink
                   href="#areas-comunes"
                   size="sm"
-                  className="absolute top-2.5 left-2.5 z-10 px-2.5 py-1.5 text-[9px] tracking-[0.1em] shadow-[0_8px_24px_-10px_rgba(253,185,12,0.7)] sm:top-4 sm:left-4 sm:px-3 sm:text-[10px]"
+                  className="absolute top-2.5 left-2.5 z-10 px-2.5 py-1.5 text-[9px] tracking-[0.1em] shadow-[0_2px_8px_rgba(0,0,0,0.2),0_10px_28px_-12px_rgba(253,185,12,0.75)] sm:top-4 sm:left-4 sm:px-3 sm:text-[10px]"
                 >
                   Ver galería
                 </ButtonLink>
 
-                <div className="absolute right-2.5 bottom-2.5 z-10 flex items-center gap-1 rounded-full bg-black/55 px-1.5 py-1 backdrop-blur-md ring-1 ring-white/15 sm:right-4 sm:bottom-4 sm:gap-1.5 sm:px-2 sm:py-1.5">
+                <div className="absolute right-2.5 bottom-2.5 z-10 flex items-center gap-1 rounded-full border border-white/15 bg-black/60 px-1.5 py-1 shadow-[0_2px_8px_rgba(0,0,0,0.3)] backdrop-blur-md sm:right-4 sm:bottom-4 sm:gap-1.5 sm:px-2 sm:py-1.5">
                   <button
                     type="button"
                     onClick={() => goGallery(galleryIndex - 1)}
                     aria-label="Foto anterior"
-                    className="flex size-7 items-center justify-center rounded-full text-white transition-colors hover:bg-brand hover:text-ink sm:size-8"
+                    className="flex size-7 items-center justify-center rounded-full text-white transition-all duration-300 hover:scale-105 hover:bg-gradient-to-br hover:from-brand hover:to-[#e8aa00] hover:text-ink sm:size-8"
                   >
-                    <ArrowIcon className="size-3 rotate-180 sm:size-3.5" />
+                    <ArrowIcon className="size-3 rotate-180 transition-transform duration-300 hover:scale-110 sm:size-3.5" />
                   </button>
-                  <span className="min-w-[2.25rem] text-center font-display text-[10px] font-semibold tabular-nums text-white/90 sm:min-w-[2.5rem] sm:text-[11px]">
+                  <span className="min-w-[2.25rem] text-center font-display text-[10px] font-semibold tabular-nums text-white/95 sm:min-w-[2.5rem] sm:text-[11px]">
                     {galleryIndex + 1}/{previewGallery.length}
                   </span>
                   <button
                     type="button"
                     onClick={() => goGallery(galleryIndex + 1)}
                     aria-label="Foto siguiente"
-                    className="flex size-7 items-center justify-center rounded-full text-white transition-colors hover:bg-brand hover:text-ink sm:size-8"
+                    className="flex size-7 items-center justify-center rounded-full text-white transition-all duration-300 hover:scale-105 hover:bg-gradient-to-br hover:from-brand hover:to-[#e8aa00] hover:text-ink sm:size-8"
                   >
-                    <ArrowIcon className="size-3 sm:size-3.5" />
+                    <ArrowIcon className="size-3 transition-transform duration-300 hover:scale-110 sm:size-3.5" />
                   </button>
                 </div>
               </div>
@@ -263,7 +263,7 @@ export function Hero() {
             <p className="font-display text-[10px] font-semibold uppercase tracking-[0.18em] text-white/55 sm:text-[11px] sm:tracking-[0.2em]">
               {hero.eyebrow}
             </p>
-            <h2 className="text-balance mt-2 max-w-md font-display text-[1.35rem] font-normal leading-[1.05] tracking-[-0.03em] min-[380px]:text-[1.5rem] sm:mt-3 sm:text-[1.9rem] md:text-[2.1rem] lg:text-[clamp(1.7rem,2.4vw,2.35rem)]">
+            <h2 className="text-balance mt-2 max-w-md font-display text-[1.4rem] font-medium leading-[1.08] tracking-[-0.03em] min-[380px]:text-[1.55rem] sm:mt-3 sm:text-[2rem] md:text-[2.15rem] lg:text-[clamp(1.75rem,2.5vw,2.4rem)]">
               Tu{" "}
               <span className="font-bold text-brand">{hero.titleAccent}</span>
               <br />
@@ -272,7 +272,7 @@ export function Hero() {
             <p className="mt-2 max-w-md text-[0.85rem] leading-relaxed text-white/65 sm:mt-3 sm:text-sm lg:line-clamp-2 xl:line-clamp-none xl:text-[0.95rem]">
               {hero.subtitle}
             </p>
-            <div className="mt-4 sm:mt-5">
+            <div className="mt-4 flex flex-col gap-3 sm:mt-5 sm:flex-row sm:flex-wrap">
               <ButtonLink
                 href="#areas-comunes"
                 size="lg"
@@ -281,27 +281,36 @@ export function Hero() {
                 Ver áreas comunes
                 <ArrowIcon className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </ButtonLink>
+              <ButtonLink
+                href="#plano"
+                size="lg"
+                variant="outline"
+                className="group w-full border-white/30 bg-white/[0.04] px-5 py-3 text-sm text-white hover:border-brand hover:bg-brand hover:text-ink sm:w-auto sm:px-7 sm:py-3.5 sm:text-[0.9rem]"
+              >
+                Ver plano
+                <ArrowIcon className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </ButtonLink>
             </div>
           </motion.div>
         </div>
 
-        <div className="safe-bottom border-t border-white/10 bg-black/75 backdrop-blur-md pb-fab lg:pb-0">
-          <div className="mx-auto max-w-7xl px-3 py-3 sm:px-6 sm:py-4 md:px-8 lg:px-10">
-            <ul className="grid grid-cols-3 gap-1.5 sm:gap-4 md:gap-6 lg:flex lg:items-center lg:gap-10 xl:gap-14">
+        <div className="safe-bottom border-t border-white/[0.08] bg-black/70 shadow-[0_-8px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl pb-fab lg:pb-0">
+          <div className="mx-auto max-w-7xl px-3 py-3.5 sm:px-6 sm:py-4 md:px-8 lg:px-10">
+            <ul className="grid grid-cols-3 gap-2 sm:gap-5 md:gap-8 lg:flex lg:items-center lg:gap-12 xl:gap-16">
               {heroFacts.map(({ Icon, value, label, shortLabel }) => (
                 <li
                   key={`bar-${label}`}
-                  className="flex min-w-0 flex-col items-center gap-1.5 text-center sm:flex-row sm:items-center sm:gap-3 sm:text-left"
+                  className="group flex min-w-0 flex-col items-center gap-2 text-center sm:flex-row sm:items-center sm:gap-3.5 sm:text-left"
                 >
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-brand/15 text-brand sm:size-9">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white/[0.06] text-brand ring-1 ring-white/10 transition-all duration-300 group-hover:bg-brand group-hover:text-ink group-hover:ring-brand sm:size-10">
                     <Icon className="size-3.5 sm:size-4" />
                   </span>
                   <span className="min-w-0">
-                    <span className="block font-display text-[8px] font-semibold uppercase tracking-[0.08em] text-white/45 sm:text-[10px] sm:tracking-[0.12em]">
+                    <span className="block font-display text-[8px] font-semibold uppercase tracking-[0.1em] text-white/40 sm:text-[10px] sm:tracking-[0.14em]">
                       <span className="sm:hidden">{shortLabel}</span>
                       <span className="hidden sm:inline">{label}</span>
                     </span>
-                    <span className="block truncate font-display text-[11px] font-semibold text-white min-[380px]:text-xs sm:text-sm md:text-base">
+                    <span className="block truncate font-display text-[11px] font-semibold text-white min-[380px]:text-xs sm:text-sm md:text-[0.95rem]">
                       {value}
                     </span>
                   </span>

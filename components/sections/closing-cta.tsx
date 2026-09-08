@@ -21,32 +21,32 @@ export function ClosingCta() {
         />
       </div>
 
-      <div className="absolute inset-0 bg-[#080807]/58" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#080807]/70 via-[#080807]/55 to-[#080807]/75" />
       <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_15%_85%,rgba(253,185,12,0.15),transparent_55%),linear-gradient(90deg,rgba(8,7,6,0.68),transparent_65%)]"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_12%_85%,rgba(253,185,12,0.16),transparent_55%),linear-gradient(100deg,rgba(8,7,6,0.72)_0%,transparent_68%)]"
         aria-hidden
       />
 
       <Container className="section-py relative z-10">
         <Reveal>
           <div className="max-w-2xl">
-            <p className="font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-brand/90">
+            <p className="font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-brand/90">
               {project.status}
             </p>
 
-            <h2 className="text-balance mt-4 font-display text-[1.75rem] font-bold leading-[1.05] tracking-[-0.04em] text-white sm:mt-5 sm:text-[2.75rem]">
+            <h2 className="text-balance mt-5 font-display text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.035em] text-white sm:mt-6 sm:text-[2.9rem]">
               Tu lote de <span className="text-brand">500 m²</span> te espera en
               Finca Algarrobo
             </h2>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/65 sm:text-base">
+            <p className="mt-5 max-w-lg text-[0.98rem] leading-[1.7] text-white/60 sm:mt-6 sm:text-[1.05rem]">
               {company.secondaryTagline}. Agenda una visita o escríbenos hoy.
             </p>
 
-            <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
+            <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap">
               <ButtonLink
                 href="#contacto"
                 size="lg"
-                className="w-full shadow-[0_12px_36px_-12px_rgba(253,185,12,0.65)] sm:w-auto"
+                className="w-full shadow-[0_16px_44px_-14px_rgba(253,185,12,0.7)] sm:w-auto"
               >
                 Quiero más información
                 <ArrowIcon className="size-4" />
@@ -56,7 +56,7 @@ export function ClosingCta() {
                 <WhatsAppButton
                   size="lg"
                   variant="outline"
-                  className="w-full border-white/25 bg-white/[0.04] text-white hover:border-brand hover:bg-brand hover:text-ink sm:w-auto"
+                  className="w-full border-white/25 bg-white/[0.05] text-white backdrop-blur-sm hover:border-brand hover:bg-brand hover:text-ink sm:w-auto"
                 >
                   <WhatsAppIcon className="size-4" />
                   WhatsApp
@@ -65,7 +65,7 @@ export function ClosingCta() {
                 <ContactFormButton
                   size="lg"
                   variant="outline"
-                  className="w-full border-white/25 bg-white/[0.04] text-white hover:border-brand hover:bg-brand hover:text-ink sm:w-auto"
+                  className="w-full border-white/25 bg-white/[0.05] text-white backdrop-blur-sm hover:border-brand hover:bg-brand hover:text-ink sm:w-auto"
                 >
                   <MailIcon className="size-4" />
                   Correo

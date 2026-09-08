@@ -69,7 +69,7 @@ export function AmenitiesGallery() {
         role="region"
         aria-roledescription="carrusel"
         aria-label="Galería de áreas comunes de Finca Algarrobo"
-        className="overflow-hidden rounded-2xl bg-white/[0.03] ring-1 ring-white/10"
+        className="overflow-hidden rounded-[1.35rem] bg-white/[0.03] ring-1 ring-white/10"
       >
         <div
           className="relative"
@@ -126,7 +126,7 @@ export function AmenitiesGallery() {
                   <p className="mt-1.5 line-clamp-2 max-w-md text-sm leading-relaxed text-white/70 sm:mt-2 sm:line-clamp-none sm:text-base">
                     {current.description}
                   </p>
-                  <p className="mt-2.5 inline-flex items-center gap-2 rounded-full bg-white/10 px-2.5 py-1 text-[10px] text-white/70 ring-1 ring-white/15 backdrop-blur-sm sm:mt-3 sm:px-3 sm:text-xs">
+                  <p className="mt-2.5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-3 py-1.5 text-[10px] font-medium text-white/75 shadow-[0_2px_8px_-4px_rgba(0,0,0,0.3)] backdrop-blur-md sm:mt-3 sm:px-3.5 sm:text-xs">
                     Clic para ampliar · Desliza
                   </p>
                 </div>
@@ -138,17 +138,17 @@ export function AmenitiesGallery() {
             type="button"
             onClick={() => goTo(index - 1)}
             aria-label="Área común anterior"
-            className="absolute top-1/2 left-2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-ink/55 text-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)] backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-brand hover:bg-brand hover:text-ink sm:left-5 sm:size-11"
+            className="absolute top-1/2 left-2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border-[1.5px] border-white/30 bg-ink/60 text-white shadow-[0_2px_8px_rgba(0,0,0,0.2),0_12px_32px_-14px_rgba(0,0,0,0.65)] backdrop-blur-md transition-all duration-[350ms] hover:scale-[1.08] hover:border-brand hover:bg-gradient-to-br hover:from-brand hover:to-[#e8aa00] hover:text-ink hover:shadow-[0_4px_16px_rgba(253,185,12,0.4)] sm:left-5 sm:size-12"
           >
-            <ArrowIcon className="size-4 rotate-180" />
+            <ArrowIcon className="size-4 transition-transform duration-300 group-hover:scale-110" />
           </button>
           <button
             type="button"
             onClick={() => goTo(index + 1)}
             aria-label="Siguiente área común"
-            className="absolute top-1/2 right-2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-ink/55 text-white shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)] backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-brand hover:bg-brand hover:text-ink sm:right-5 sm:size-11"
+            className="absolute top-1/2 right-2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border-[1.5px] border-white/30 bg-ink/60 text-white shadow-[0_2px_8px_rgba(0,0,0,0.2),0_12px_32px_-14px_rgba(0,0,0,0.65)] backdrop-blur-md transition-all duration-[350ms] hover:scale-[1.08] hover:border-brand hover:bg-gradient-to-br hover:from-brand hover:to-[#e8aa00] hover:text-ink hover:shadow-[0_4px_16px_rgba(253,185,12,0.4)] sm:right-5 sm:size-12"
           >
-            <ArrowIcon className="size-4" />
+            <ArrowIcon className="size-4 transition-transform duration-300 group-hover:scale-110" />
           </button>
         </div>
 
@@ -232,7 +232,7 @@ export function AmenitiesGallery() {
                 setIsLightboxOpen(false);
               }}
               aria-label="Cerrar galería"
-              className="absolute top-4 right-4 z-20 flex size-11 items-center justify-center rounded-full border border-white/20 bg-ink/70 text-white backdrop-blur-sm transition-colors hover:border-brand hover:bg-brand hover:text-ink sm:top-8 sm:right-8"
+              className="absolute top-4 right-4 z-20 flex size-12 items-center justify-center rounded-full border-[1.5px] border-white/25 bg-ink/75 text-white shadow-[0_4px_16px_rgba(0,0,0,0.4)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-brand hover:bg-gradient-to-br hover:from-brand hover:to-[#e8aa00] hover:text-ink sm:top-8 sm:right-8"
             >
               <CloseIcon className="size-5" />
             </button>
@@ -244,7 +244,7 @@ export function AmenitiesGallery() {
                 goTo(index - 1);
               }}
               aria-label="Área común anterior"
-              className="absolute top-1/2 left-2 z-20 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-ink/70 text-white backdrop-blur-sm transition-colors hover:border-brand hover:bg-brand hover:text-ink sm:left-8"
+              className="absolute top-1/2 left-2 z-20 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border-[1.5px] border-white/25 bg-ink/75 text-white shadow-[0_4px_16px_rgba(0,0,0,0.4)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-brand hover:bg-gradient-to-br hover:from-brand hover:to-[#e8aa00] hover:text-ink sm:left-8"
             >
               <ArrowIcon className="size-4 rotate-180" />
             </button>
@@ -295,7 +295,7 @@ export function AmenitiesGallery() {
                 goTo(index + 1);
               }}
               aria-label="Siguiente área común"
-              className="absolute top-1/2 right-2 z-20 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-ink/70 text-white backdrop-blur-sm transition-colors hover:border-brand hover:bg-brand hover:text-ink sm:right-8"
+              className="absolute top-1/2 right-2 z-20 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border-[1.5px] border-white/25 bg-ink/75 text-white shadow-[0_4px_16px_rgba(0,0,0,0.4)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-brand hover:bg-gradient-to-br hover:from-brand hover:to-[#e8aa00] hover:text-ink sm:right-8"
             >
               <ArrowIcon className="size-4" />
             </button>

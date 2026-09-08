@@ -6,21 +6,21 @@ type Variant = "primary" | "dark" | "outline" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-display font-semibold transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 rounded-full font-display font-semibold transition-all duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand/60";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-brand text-ink shadow-[0_8px_28px_-8px_rgba(253,185,12,0.65)] hover:bg-brand-dark hover:shadow-[0_12px_36px_-8px_rgba(253,185,12,0.75)] hover:-translate-y-0.5",
-  dark: "bg-ink text-white hover:bg-ink-700 hover:-translate-y-0.5",
+    "bg-brand text-ink shadow-[0_1px_0_rgba(255,255,255,0.25)_inset,0_10px_32px_-10px_rgba(253,185,12,0.7)] hover:bg-[#ffc933] hover:shadow-[0_1px_0_rgba(255,255,255,0.3)_inset,0_16px_40px_-12px_rgba(253,185,12,0.85)] hover:-translate-y-[2px]",
+  dark: "bg-ink text-white shadow-[0_10px_28px_-12px_rgba(0,0,0,0.45)] hover:bg-ink-700 hover:-translate-y-[2px]",
   outline:
-    "border border-ink/15 bg-transparent text-ink hover:border-ink hover:bg-ink hover:text-white",
-  ghost: "text-ink hover:text-brand-dark",
+    "border border-ink/12 bg-white/40 text-ink backdrop-blur-sm hover:border-ink/25 hover:bg-white/80 hover:-translate-y-[1px]",
+  ghost: "text-ink/70 hover:text-brand-dark hover:bg-brand/5",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "px-4 py-2 text-xs uppercase tracking-[0.12em]",
-  md: "px-6 py-3 text-sm tracking-tight",
-  lg: "px-8 py-4 text-[0.95rem] tracking-tight",
+  sm: "px-4 py-2.5 text-xs uppercase tracking-[0.12em]",
+  md: "px-7 py-3.5 text-sm tracking-tight",
+  lg: "px-9 py-[1.1rem] text-[0.95rem] tracking-tight",
 };
 
 type BaseProps = {

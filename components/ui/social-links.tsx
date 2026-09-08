@@ -41,18 +41,18 @@ export function SocialLinks({
           rel="noopener noreferrer"
           aria-label={`${label} de ${company.name}`}
           className={cn(
-            "group inline-flex items-center gap-2.5 rounded-full border transition-all duration-300",
+            "group inline-flex items-center gap-2.5 rounded-sm border transition-all duration-300",
             showLabels ? "px-4 py-2" : "p-2.5",
             isDark
               ? "border-white/15 bg-white/5 text-white/75 hover:border-white/25 hover:bg-white/10 hover:text-white"
-              : "border-ink/10 bg-surface text-ink-500 hover:border-ink/15 hover:bg-white hover:text-ink"
+              : "border-ink/10 bg-white text-ink-500 hover:border-ink/20 hover:text-ink"
           )}
         >
           <span
             className={cn(
-              "flex shrink-0 items-center justify-center rounded-full transition-all duration-300",
-              showLabels ? "size-9" : "size-10",
-              isDark ? "bg-white/10 text-white" : "bg-white text-ink-500 shadow-sm ring-1 ring-ink/5",
+              "flex shrink-0 items-center justify-center rounded-sm transition-all duration-300",
+              showLabels ? "size-8" : "size-9",
+              isDark ? "bg-white/10 text-white" : "bg-[#f3f2ef] text-ink-500",
               iconHover
             )}
           >

@@ -4,17 +4,17 @@
 @theme {
   --color-brand: #fdb90c;
   --color-brand-dark: #d99c00;
-  --color-brand-soft: #fff6de;
-  --color-ink: #000000;
-  --color-ink-700: #1a1a1a;
-  --color-ink-500: #4d4d4d;
-  --color-ink-300: #8c8c8c;
-  --color-ink-100: #e5e5e5;
-  --color-surface: #f8f8f6;
+  --color-brand-soft: #fff8e8;
+  --color-ink: #0a0a0a;
+  --color-ink-700: #1c1c1c;
+  --color-ink-500: #5a5a5a;
+  --color-ink-300: #8f8f8f;
+  --color-ink-100: #e8e8e6;
+  --color-surface: #f3f2ef;
   --color-forest: #2f5138;
 
   --font-display: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 
   --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -79,34 +79,41 @@
 }
 
 @utility mesh-surface {
-  background-color: #f7f5f0;
+  background-color: #f2f1ee;
   background-image:
-    radial-gradient(ellipse 80% 60% at 0% -10%, rgb(253 185 12 / 0.1), transparent 55%),
-    radial-gradient(ellipse 60% 50% at 100% 110%, rgb(253 185 12 / 0.06), transparent 50%),
-    linear-gradient(180deg, #faf8f3 0%, #f4f1ea 100%);
+    radial-gradient(ellipse 70% 50% at 8% 0%, rgba(253, 185, 12, 0.09), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 92% 100%, rgba(0, 0, 0, 0.03), transparent 50%),
+    linear-gradient(180deg, #f6f5f2 0%, #f0efeb 48%, #ebeae6 100%);
 }
 
 @utility panel-warm {
   background-image:
-    radial-gradient(ellipse 90% 55% at 100% -10%, rgba(253, 185, 12, 0.12), transparent 52%),
-    radial-gradient(ellipse 70% 50% at -10% 110%, rgba(253, 185, 12, 0.06), transparent 48%),
-    linear-gradient(165deg, #0f0d0a 0%, #080807 48%, #050505 100%);
+    radial-gradient(ellipse 80% 50% at 90% -5%, rgba(253, 185, 12, 0.14), transparent 50%),
+    radial-gradient(ellipse 60% 45% at 5% 100%, rgba(253, 185, 12, 0.05), transparent 45%),
+    linear-gradient(160deg, #12100e 0%, #0a0908 42%, #050505 100%);
 }
 
 @utility shadow-soft {
-  box-shadow: 0 20px 50px -28px rgb(0 0 0 / 0.12);
+  box-shadow:
+    0 1px 1px rgb(0 0 0 / 0.03),
+    0 12px 40px -22px rgb(0 0 0 / 0.12);
 }
 
 @utility shadow-elevated {
   box-shadow:
-    0 0 0 1px rgb(0 0 0 / 0.03),
-    0 24px 60px -30px rgb(0 0 0 / 0.16);
+    0 0 0 1px rgb(0 0 0 / 0.04),
+    0 1px 2px rgb(0 0 0 / 0.03),
+    0 28px 64px -32px rgb(0 0 0 / 0.22);
 }
 
 @utility card {
-  border-radius: 0.5rem;
-  background-color: #fff;
-  border: 1px solid rgb(0 0 0 / 0.1);
+  border-radius: 1rem;
+  background-color: rgb(255 255 255 / 0.72);
+  border: 1px solid rgb(0 0 0 / 0.06);
+  box-shadow:
+    0 1px 1px rgb(0 0 0 / 0.02),
+    0 10px 28px -16px rgb(0 0 0 / 0.1);
+  backdrop-filter: blur(12px);
 }
 
 @keyframes fade-up {
@@ -471,10 +478,12 @@
   }
 
   body {
-    background-color: #ffffff;
+    background-color: #f2f1ee;
     color: var(--color-ink);
     font-family: var(--font-sans);
+    letter-spacing: -0.011em;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
@@ -486,6 +495,13 @@
   :focus-visible {
     outline: 2px solid var(--color-brand);
     outline-offset: 3px;
+    border-radius: 0.25rem;
+  }
+
+  * {
+    @supports (font: -apple-system-body) {
+      font-synthesis-weight: none;
+    }
   }
 }
 

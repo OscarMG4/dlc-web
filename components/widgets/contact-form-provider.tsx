@@ -33,6 +33,7 @@ function useContactForm() {
 
 export function ContactFormProvider({ children }: { children: ReactNode }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [dockVisible, setDockVisible] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
   const openForm = useCallback(() => {
@@ -52,6 +53,35 @@ export function ContactFormProvider({ children }: { children: ReactNode }) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [closeForm, isFormOpen]);
 
+  useEffect(() => {
+    const section = document.getElementById("plano");
+    const reveal = () => setDockVisible(true);
+
+    if (!section) {
+      const onScroll = () => {
+        if (window.scrollY <= window.innerHeight * 0.55) return;
+        window.removeEventListener("scroll", onScroll);
+        reveal();
+      };
+      if (window.scrollY > window.innerHeight * 0.55) reveal();
+      else window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          reveal();
+          observer.disconnect();
+        }
+      },
+      { root: null, threshold: 0.08, rootMargin: "0px 0px -12% 0px" }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   const transition = {
     duration: shouldReduceMotion ? 0 : 0.4,
     ease: [0.22, 1, 0.36, 1] as const,
@@ -61,53 +91,71 @@ export function ContactFormProvider({ children }: { children: ReactNode }) {
     <ContactFormContext.Provider value={{ openForm, closeForm }}>
       {children}
 
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-end p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-6">
-        <div className="pointer-events-auto flex w-full max-w-[min(100%,24rem)] flex-col items-end gap-2.5 sm:max-w-md sm:gap-3">
-          <AnimatePresence>
-            {isFormOpen ? (
-              <motion.div
-                key="panel"
-                initial={{ opacity: 0, y: 16, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 16, scale: 0.98 }}
-                transition={transition}
-                role="dialog"
-                aria-label="Formulario de contacto por correo"
-                className="w-full overflow-hidden rounded-[1.75rem] border border-ink/5 bg-white shadow-elevated sm:max-w-sm"
-              >
-                <div className="flex items-start justify-between gap-4 bg-ink px-6 py-5">
-                  <div>
-                    <p className="font-display text-[10px] font-semibold uppercase tracking-brand text-brand">
-                      {company.name}
-                    </p>
-                    <p className="mt-1 font-display text-base font-semibold text-white">
-                      Escríbenos por correo
-                    </p>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={closeForm}
-                    aria-label="Minimizar formulario"
-                    className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-brand hover:bg-brand hover:text-ink"
+      <AnimatePresence>
+        {dockVisible ? (
+          <motion.div
+            key="contact-dock"
+            initial={
+              shouldReduceMotion ? false : { opacity: 0, y: 28, scale: 0.92 }
+            }
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.5,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-end p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-6"
+          >
+            <div className="pointer-events-auto flex w-full max-w-[min(100%,24rem)] flex-col items-end gap-2.5 sm:max-w-md sm:gap-3">
+              <AnimatePresence>
+                {isFormOpen ? (
+                  <motion.div
+                    key="panel"
+                    initial={{ opacity: 0, y: 16, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 16, scale: 0.98 }}
+                    transition={transition}
+                    role="dialog"
+                    aria-label="Formulario de contacto por correo"
+                    className="w-full overflow-hidden rounded-[1.75rem] border border-ink/5 bg-white shadow-elevated sm:max-w-sm"
                   >
-                    <MinusIcon className="size-4" />
-                  </button>
-                </div>
+                    <div className="flex items-start justify-between gap-4 bg-ink px-6 py-5">
+                      <div>
+                        <p className="font-display text-[10px] font-semibold uppercase tracking-brand text-brand">
+                          {company.name}
+                        </p>
+                        <p className="mt-1 font-display text-base font-semibold text-white">
+                          Escríbenos por correo
+                        </p>
+                      </div>
 
-                <div className="max-h-[65vh] overflow-y-auto px-6 py-6">
-                  <ContactForm compact />
-                </div>
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
+                      <button
+                        type="button"
+                        onClick={closeForm}
+                        aria-label="Minimizar formulario"
+                        className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-brand hover:bg-brand hover:text-ink"
+                      >
+                        <MinusIcon className="size-4" />
+                      </button>
+                    </div>
 
-          <div className="flex items-center gap-3">
-            <button
+                    <div className="max-h-[65vh] overflow-y-auto px-6 py-6">
+                      <ContactForm compact />
+                    </div>
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+
+              <div className="flex items-center gap-3">
+                <button
                   type="button"
                   onClick={() => (isFormOpen ? closeForm() : openForm())}
                   aria-expanded={isFormOpen}
-                  aria-label={isFormOpen ? "Cerrar formulario de correo" : "Abrir formulario de correo"}
+                  aria-label={
+                    isFormOpen
+                      ? "Cerrar formulario de correo"
+                      : "Abrir formulario de correo"
+                  }
                   className="flex size-12 items-center justify-center gap-2 rounded-full bg-ink text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-700 sm:size-auto sm:px-5 sm:py-3.5"
                 >
                   {isFormOpen ? (
@@ -124,9 +172,11 @@ export function ContactFormProvider({ children }: { children: ReactNode }) {
                   ariaLabel="Abrir consultas por WhatsApp de Grupo DLC"
                   suppressBubble={isFormOpen}
                 />
-          </div>
-        </div>
-      </div>
+              </div>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </ContactFormContext.Provider>
   );
 }

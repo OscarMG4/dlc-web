@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 type Status = "idle" | "sending" | "success" | "error";
 
 const fieldClasses =
-  "w-full rounded-xl border border-ink-100 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-300 transition-colors duration-200 focus:border-brand focus:outline-none";
+  "w-full rounded-sm border border-ink/10 bg-[#fafaf8] px-4 py-3.5 text-sm text-ink placeholder:text-ink-300 transition-colors duration-200 focus:border-brand focus:bg-white focus:outline-none";
 
 type ContactFormProps = {
   compact?: boolean;

@@ -245,8 +245,6 @@ const BUBBLE_DELAY_MS = 1600;
 const TYPING_MS = 1400;
 const EXIT_MS = 220;
 const BUBBLE_AUTO_HIDE_MS = 12000;
-// En móvil el globo tapa el hero: mostrar tras ~60% de scroll.
-const BUBBLE_SCROLL_RATIO = 0.6;
 
 export function WhatsAppFab({
   className,
@@ -263,34 +261,13 @@ export function WhatsAppFab({
   useEffect(() => {
     if (sessionStorage.getItem(BUBBLE_DISMISS_KEY) === "1") return;
 
-    let appear = 0;
-    let reveal = 0;
-
-    const start = () => {
-      appear = window.setTimeout(() => setShowBubble(true), BUBBLE_DELAY_MS);
-      reveal = window.setTimeout(
-        () => setIsTyping(false),
-        shouldReduceMotion ? BUBBLE_DELAY_MS : BUBBLE_DELAY_MS + TYPING_MS
-      );
-    };
-
-    const hasLeftHero = () =>
-      window.scrollY > window.innerHeight * BUBBLE_SCROLL_RATIO;
-
-    const onScroll = () => {
-      if (!hasLeftHero()) return;
-      window.removeEventListener("scroll", onScroll);
-      start();
-    };
-
-    if (hasLeftHero()) {
-      start();
-    } else {
-      window.addEventListener("scroll", onScroll, { passive: true });
-    }
+    const appear = window.setTimeout(() => setShowBubble(true), BUBBLE_DELAY_MS);
+    const reveal = window.setTimeout(
+      () => setIsTyping(false),
+      shouldReduceMotion ? BUBBLE_DELAY_MS : BUBBLE_DELAY_MS + TYPING_MS
+    );
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
       window.clearTimeout(appear);
       window.clearTimeout(reveal);
     };
