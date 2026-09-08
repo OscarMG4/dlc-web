@@ -23,7 +23,7 @@ export const contactSchema = z.object({
     .trim()
     .min(10, "Cuéntanos en al menos 10 caracteres qué información necesitas")
     .max(600, "Máximo 600 caracteres"),
-  // Campo señuelo: los bots lo completan, las personas no lo ven.
+  // Honeypot anti-bot (oculto en UI).
   website: z.string().max(0).optional(),
 });
 

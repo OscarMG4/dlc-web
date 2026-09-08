@@ -4,8 +4,7 @@ import { absoluteUrl, siteConfig } from "@/lib/site";
 export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
-  // Sin dominio real configurado se trata como entorno no productivo:
-  // bloquear evita que un preview compita con el sitio en el índice.
+  // Sin dominio real (localhost): no indexar previews.
   const isIndexable = !siteConfig.url.includes("localhost");
 
   if (!isIndexable) {

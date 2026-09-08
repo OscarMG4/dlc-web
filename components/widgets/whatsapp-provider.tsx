@@ -244,7 +244,7 @@ const BUBBLE_DELAY_MS = 1600;
 const TYPING_MS = 1400;
 const EXIT_MS = 220;
 const BUBBLE_AUTO_HIDE_MS = 12000;
-/** El globo tapa el hero en pantallas chicas, así que espera a que el visitante baje. */
+// En móvil el globo tapa el hero: mostrar tras ~60% de scroll.
 const BUBBLE_SCROLL_RATIO = 0.6;
 
 export function WhatsAppFab({

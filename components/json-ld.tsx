@@ -3,7 +3,7 @@ type JsonLdProps = {
 };
 
 export function JsonLd({ schema }: JsonLdProps) {
-  // El escape de "<" evita que un valor con contenido HTML cierre el <script>.
+  // Evita que un "<" en el JSON cierre el <script>.
   const json = JSON.stringify(schema).replace(/</g, "\\u003c");
 
   return (

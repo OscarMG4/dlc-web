@@ -5,7 +5,7 @@ import { company, mapLinkUrl } from "@/lib/content";
 
 const links = [
   { href: "#proyecto", label: "Finca Algarrobo" },
-  { href: "#galeria", label: "Galería" },
+  { href: "#areas-comunes", label: "Áreas comunes" },
   { href: "#nosotros", label: "Sobre nosotros" },
   { href: "#ubicacion", label: "Ubicación" },
   { href: "#contacto", label: "Contacto" },
@@ -13,8 +13,13 @@ const links = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-ink/8 bg-ink text-white">
-      <Container className="grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.3fr_1fr_1fr]">
+    <footer className="relative overflow-hidden border-t border-white/8 text-white panel-warm">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/60 to-transparent"
+        aria-hidden
+      />
+
+      <Container className="relative grid gap-12 py-14 sm:py-16 lg:grid-cols-[1.3fr_1fr_1fr]">
         <div>
           <Image
             src="/brand/dlc-logo-white.png"
@@ -31,7 +36,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-white/35">
+          <h3 className="font-display text-xs font-semibold uppercase tracking-[0.15em] text-brand/80">
             Contacto
           </h3>
           <ul className="mt-5 space-y-3 text-sm text-white/60">
@@ -40,7 +45,7 @@ export function SiteFooter() {
                 href={mapLinkUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-white"
+                className="transition-colors hover:text-brand"
               >
                 {company.addressFull}
               </a>
@@ -48,7 +53,7 @@ export function SiteFooter() {
             <li>
               <a
                 href={`tel:${company.phoneE164}`}
-                className="transition-colors hover:text-white"
+                className="transition-colors hover:text-brand"
               >
                 {company.phoneDisplay}
               </a>
@@ -56,7 +61,7 @@ export function SiteFooter() {
             <li>
               <a
                 href={`mailto:${company.email}`}
-                className="break-all transition-colors hover:text-white"
+                className="break-all transition-colors hover:text-brand"
               >
                 {company.email}
               </a>
@@ -65,13 +70,16 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-white/35">
+          <h3 className="font-display text-xs font-semibold uppercase tracking-[0.15em] text-brand/80">
             Navegación
           </h3>
           <ul className="mt-5 space-y-3 text-sm text-white/60">
             {links.map(({ href, label }) => (
               <li key={href}>
-                <a href={href} className="transition-colors hover:text-brand">
+                <a
+                  href={href}
+                  className="transition-all duration-300 hover:translate-x-0.5 hover:text-brand"
+                >
                   {label}
                 </a>
               </li>
@@ -80,10 +88,11 @@ export function SiteFooter() {
         </div>
       </Container>
 
-      <div className="border-t border-white/10">
+      <div className="relative border-t border-white/10">
         <Container className="flex flex-col gap-2 py-6 text-xs text-white/30 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {company.name}. Todos los derechos reservados.
+            © {new Date().getFullYear()} {company.name}. Todos los derechos
+            reservados.
           </p>
           <p>
             {company.city}, {company.country}

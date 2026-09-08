@@ -33,16 +33,16 @@ export function SectionHeading({
       {eyebrow ? (
         <div
           className={cn(
-            "flex items-center gap-3 font-display text-xs font-semibold uppercase tracking-[0.2em]",
+            "flex items-center gap-3 font-display text-[11px] font-semibold uppercase tracking-[0.22em]",
             align === "center" && "justify-center",
-            isDark ? "text-brand" : "text-brand-dark"
+            isDark ? "text-brand/85" : "text-brand-dark"
           )}
         >
           {index ? (
-            <span className="tabular-nums text-brand">{index}</span>
+            <span className="tabular-nums text-brand/70">{index}</span>
           ) : null}
           <span
-            className={cn("h-px w-8", isDark ? "bg-brand/60" : "bg-brand")}
+            className={cn("h-px w-7", isDark ? "bg-brand/50" : "bg-brand/70")}
             aria-hidden
           />
           <p>{eyebrow}</p>
@@ -51,7 +51,7 @@ export function SectionHeading({
 
       <h2
         className={cn(
-          "text-balance mt-5 font-display text-[1.75rem] font-bold leading-[1.05] tracking-[-0.035em] sm:text-4xl lg:text-[3rem]",
+          "text-balance mt-4 font-display text-[1.6rem] font-bold leading-[1.05] tracking-[-0.04em] sm:mt-5 sm:text-[2.35rem] lg:text-[2.85rem]",
           isDark ? "text-white" : "text-ink"
         )}
       >
@@ -61,8 +61,8 @@ export function SectionHeading({
       {description ? (
         <p
           className={cn(
-            "mt-5 max-w-2xl text-base leading-relaxed sm:text-[1.05rem]",
-            isDark ? "text-white/60" : "text-ink-500",
+            "mt-4 max-w-2xl text-[0.95rem] leading-relaxed sm:mt-5 sm:text-base",
+            isDark ? "text-white/50" : "text-ink-500",
             align === "center" && "mx-auto"
           )}
         >

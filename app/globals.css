@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 @theme {
   --color-brand: #fdb90c;
@@ -27,10 +28,10 @@
 }
 
 @utility section-py {
-  padding-block: 5rem;
+  padding-block: 3.75rem;
 
   @media (width >= 40rem) {
-    padding-block: 7rem;
+    padding-block: 6rem;
   }
 
   @media (width >= 64rem) {
@@ -40,6 +41,10 @@
 
 @utility safe-bottom {
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+@utility pb-fab {
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
 }
 
 @utility scroll-snap-x {
@@ -74,22 +79,28 @@
 }
 
 @utility mesh-surface {
-  background-color: var(--color-surface);
+  background-color: #f7f5f0;
   background-image:
-    radial-gradient(ellipse 70% 55% at 0% 0%, rgb(253 185 12 / 0.08), transparent 50%),
-    radial-gradient(ellipse 55% 45% at 100% 100%, rgb(47 81 56 / 0.05), transparent 45%);
-  background-size: 120% 120%, 120% 120%;
-  animation: mesh-drift 18s ease-in-out infinite;
+    radial-gradient(ellipse 80% 60% at 0% -10%, rgb(253 185 12 / 0.1), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 100% 110%, rgb(253 185 12 / 0.06), transparent 50%),
+    linear-gradient(180deg, #faf8f3 0%, #f4f1ea 100%);
+}
+
+@utility panel-warm {
+  background-image:
+    radial-gradient(ellipse 90% 55% at 100% -10%, rgba(253, 185, 12, 0.14), transparent 52%),
+    radial-gradient(ellipse 70% 50% at -10% 110%, rgba(253, 185, 12, 0.07), transparent 48%),
+    linear-gradient(165deg, #16130e 0%, #0c0b09 48%, #080807 100%);
 }
 
 @utility shadow-soft {
-  box-shadow: 0 24px 80px -32px rgb(0 0 0 / 0.1);
+  box-shadow: 0 20px 50px -28px rgb(0 0 0 / 0.12);
 }
 
 @utility shadow-elevated {
   box-shadow:
-    0 0 0 1px rgb(0 0 0 / 0.04),
-    0 28px 70px -28px rgb(0 0 0 / 0.14);
+    0 0 0 1px rgb(0 0 0 / 0.03),
+    0 24px 60px -30px rgb(0 0 0 / 0.16);
 }
 
 @utility card {
@@ -450,7 +461,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 5rem;
   }
 
   @media (width >= 40rem) {

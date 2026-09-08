@@ -10,11 +10,11 @@ export function MarqueeBand() {
   return (
     <section
       aria-label={`Proyectos realizados por ${company.name}`}
-      className="border-y border-ink/10 bg-white"
+      className="relative overflow-hidden border-y border-black/5 bg-[#faf8f3]"
     >
-      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-7 sm:px-8 lg:flex-row lg:items-center lg:gap-12 lg:px-10">
-        <div className="shrink-0 border-l-2 border-brand pl-4">
-          <p className="font-display text-[11px] font-bold uppercase leading-[1.5] tracking-[0.18em] text-ink">
+      <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-7 sm:px-8 lg:flex-row lg:items-center lg:gap-10 lg:px-10">
+        <div className="shrink-0 border-l-2 border-brand/70 pl-3.5">
+          <p className="font-display text-[11px] font-semibold uppercase leading-[1.45] tracking-[0.16em] text-ink/80">
             Proyectos realizados
             <br />
             por {company.name}
@@ -22,14 +22,14 @@ export function MarqueeBand() {
         </div>
 
         <div className="relative min-w-0 flex-1 overflow-hidden">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white to-transparent sm:w-16" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white to-transparent sm:w-16" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-[#faf8f3] to-transparent sm:w-14" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-[#faf8f3] to-transparent sm:w-14" />
 
-          <ul className="animate-marquee-pause flex w-max items-center gap-10 sm:gap-16">
+          <ul className="animate-marquee-pause flex w-max items-center gap-10 sm:gap-14">
             {track.map((item, index) => (
               <li
                 key={`${item.name}-${index}`}
-                className="flex shrink-0 items-center"
+                className="flex shrink-0 items-center opacity-70 transition-opacity duration-300 hover:opacity-100"
                 aria-hidden={item.duplicate}
               >
                 <Image
@@ -37,7 +37,7 @@ export function MarqueeBand() {
                   alt={item.duplicate ? "" : `${item.name}, ${item.type}`}
                   width={item.width}
                   height={item.height}
-                  className="h-auto max-h-9 w-auto max-w-[7.5rem] object-contain sm:max-h-12 sm:max-w-[10rem]"
+                  className="h-auto max-h-8 w-auto max-w-[7rem] object-contain sm:max-h-11 sm:max-w-[9.5rem]"
                 />
               </li>
             ))}

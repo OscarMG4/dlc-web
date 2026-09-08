@@ -148,7 +148,6 @@ export const stats = [
   },
 ] as const;
 
-/** Logotipos de proyectos ya desarrollados por Grupo DLC, con sus medidas reales. */
 export const completedProjects = [
   {
     name: "La Alameda",
@@ -208,7 +207,7 @@ export const completedProjects = [
   },
 ] as const;
 
-/** Beneficios explícitos del proyecto — solo hechos ya comunicados por la marca. */
+/** Solo hechos ya comunicados por la marca (no inventar beneficios). */
 export const purchaseIncludes = [
   {
     title: "500 m² por lote",
@@ -239,7 +238,7 @@ export const purchaseIncludes = [
   },
 ] as const;
 
-/** Usos del lote según el posicionamiento comercial existente (sin prometer rentas ni precios). */
+/** Sin prometer rentas, plazos ni precios. */
 export const lotUses = [
   {
     title: "Casa de campo",
@@ -258,7 +257,7 @@ export const lotUses = [
   },
 ] as const;
 
-/** Pasos del proceso — flujo comercial genérico, sin plazos ni montos inventados. */
+/** Flujo comercial genérico; sin plazos ni montos inventados. */
 export const buyingProcess = [
   {
     title: "Consulta",
@@ -292,9 +291,12 @@ export const project = {
   slug: "finca-algarrobo",
   name: "Finca Algarrobo",
   status: "En venta",
-  headline: "Lotes de casa de campo de 500 m² en Chiclayo",
+  headline: "Condominio campestre para vivir y crecer",
+  tagline: "Campo para tu familia, cerca de la ciudad",
   summary:
     "Un condominio campestre pensado para familias que buscan aire libre, seguridad y una inversión que crece. Áreas comunes ejecutadas, ingreso controlado y alameda arborizada.",
+  presentation:
+    "Bajo la sombra de los algarrobos nace un hogar para criar, celebrar y quedarse. Calles arborizadas, espacios para compartir y la calma de invertir en un lugar con alma.",
   logo: "/brand/algarrobo-horizontal.png",
   cover: "/projects/algarrobo/vista-aerea.webp",
   highlights: [
@@ -342,12 +344,11 @@ export const project = {
 } as const;
 
 export const hero = {
-  eyebrow: `${project.name} · ${company.city}`,
+  eyebrow: `${company.name} · ${company.city}`,
   titleAccent: "casa de campo",
   subtitle:
-    "Lotes de 500 m² con áreas comunes, ingreso controlado y más de 250 familias que ya construyen.",
-  // Escritorio: máster recodificado. Móvil: variante liviana para no
-  // descargar ~240 MB en datos celulares.
+    "Más de 250 familias ya construyen su hogar aquí. Seguridad, aire libre y comunidad.",
+  // Móvil: no usar el máster (~240 MB). Usar videoMobile.
   video: "/projects/algarrobo/videorender.mp4",
   videoMobile: "/projects/algarrobo/videorender-mobile.mp4",
   poster: "/projects/algarrobo/hito-ingreso.webp",
@@ -418,6 +419,16 @@ export const gallery: GalleryItem[] = [
   },
 ];
 
+export const commonAreasGallery = gallery.map((item) => {
+  const amenity = project.amenities.find((entry) => entry.image === item.src);
+
+  return {
+    title: amenity?.title ?? item.caption,
+    description: amenity?.description ?? item.alt,
+    image: item.src,
+    alt: item.alt,
+  };
+});
 export const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(
   company.addressFull
 )}&output=embed`;

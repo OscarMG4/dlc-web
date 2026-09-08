@@ -61,8 +61,8 @@ export function ContactFormProvider({ children }: { children: ReactNode }) {
     <ContactFormContext.Provider value={{ openForm, closeForm }}>
       {children}
 
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-end p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:p-6">
-        <div className="pointer-events-auto flex w-full max-w-sm flex-col items-end gap-3 sm:max-w-md">
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-end p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-6">
+        <div className="pointer-events-auto flex w-full max-w-[min(100%,24rem)] flex-col items-end gap-2.5 sm:max-w-md sm:gap-3">
           <AnimatePresence>
             {isFormOpen ? (
               <motion.div

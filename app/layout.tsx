@@ -3,6 +3,8 @@ import { Inter, Jost } from "next/font/google";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { PageIntro } from "@/components/ui/page-intro";
+import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { ContactFormProvider } from "@/components/widgets/contact-form-provider";
 import { WhatsAppProvider } from "@/components/widgets/whatsapp-provider";
 import { organizationSchema, projectSchema, websiteSchema } from "@/lib/schema";
@@ -70,6 +72,9 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -79,13 +84,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <noscript>
           <style>{`[data-reveal]{opacity:1!important;transform:none!important;filter:none!important}`}</style>
         </noscript>
-        <WhatsAppProvider>
-          <ContactFormProvider>
-            <SiteHeader />
-            <main className="pb-24 sm:pb-28 lg:pb-0">{children}</main>
-            <SiteFooter />
-          </ContactFormProvider>
-        </WhatsAppProvider>
+        <SmoothScroll>
+          <WhatsAppProvider>
+            <ContactFormProvider>
+              <PageIntro />
+              <SiteHeader />
+              <main className="pb-[5.5rem] sm:pb-28 lg:pb-0">{children}</main>
+              <SiteFooter />
+            </ContactFormProvider>
+          </WhatsAppProvider>
+        </SmoothScroll>
         <JsonLd schema={[organizationSchema(), websiteSchema(), projectSchema()]} />
       </body>
     </html>

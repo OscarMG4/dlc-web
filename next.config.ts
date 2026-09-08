@@ -1,11 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // El sitio se sirve como HTML estático desde Apache (cPanel), sin runtime de Node.
+  // Static export para cPanel/Apache (sin Node en prod).
   output: "export",
   images: {
-    // Sin servidor no hay optimizador: las imágenes se sirven tal cual están
-    // en public/, ya convertidas a WebP en su resolución final.
+    // Sin runtime de Next Image: servir WebP de public/ tal cual.
     unoptimized: true,
   },
 };

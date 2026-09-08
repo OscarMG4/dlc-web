@@ -5,12 +5,11 @@ import { useEffect, useRef } from "react";
 import { ProjectImage } from "@/components/ui/project-image";
 import { ArrowIcon } from "@/components/icons";
 import { ButtonLink } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
-import { hero, project, stats } from "@/lib/content";
-import { cn } from "@/lib/utils";
+import { FeaturedProject } from "@/components/sections/featured-project";
+import { hero } from "@/lib/content";
+import { easeOutExpo } from "@/lib/motion";
 
-// Alineado con el breakpoint `lg` de Tailwind: debajo de 1024px usa el
-// video liviano; a partir de ahí, el de escritorio.
+// `lg` (1024px): video desktop; abajo, video móvil liviano.
 const DESKTOP_MQ = "(min-width: 1024px)";
 
 function resolveHeroVideoSrc() {
@@ -27,8 +26,13 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const mediaY = useTransform(scrollYProgress, [0, 1], ["0%", "16%"]);
-  const mediaScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.13]);
+  const mediaY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const mediaScale = useTransform(scrollYProgress, [0, 1], [1.03, 1.14]);
+  const mediaOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.55]);
+
+  const load = shouldReduceMotion
+    ? { duration: 0 }
+    : { duration: 1.55, ease: easeOutExpo };
 
   useEffect(() => {
     const video = videoRef.current;
@@ -39,7 +43,6 @@ export function Hero() {
       const current = video.getAttribute("src") ?? "";
       if (current.endsWith(next)) {
         video.play().catch(() => {
-          // El navegador puede bloquear autoplay; el poster cubre ese caso.
         });
         return;
       }
@@ -47,7 +50,6 @@ export function Hero() {
       video.setAttribute("src", next);
       video.load();
       video.play().catch(() => {
-        // El navegador puede bloquear autoplay; el poster cubre ese caso.
       });
     };
 
@@ -62,157 +64,110 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="inicio"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink"
+      className="relative flex flex-col bg-[#080807] lg:grid lg:h-[100svh] lg:min-h-0 lg:grid-cols-[1.05fr_0.95fr] lg:overflow-hidden"
     >
-      <motion.div
-        className="absolute inset-0 will-change-transform"
-        style={shouldReduceMotion ? undefined : { y: mediaY, scale: mediaScale }}
-      >
-        {shouldReduceMotion ? (
-          <ProjectImage
-            src={hero.poster}
-            alt={hero.imageAlt}
-            fill
-            priority
-            tier="hero"
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-        ) : (
-          <video
-            ref={videoRef}
-            className="absolute inset-0 size-full object-cover object-center brightness-[1.08] contrast-[1.03]"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={hero.poster}
-            aria-label={hero.imageAlt}
-          />
-        )}
-      </motion.div>
+      <FeaturedProject />
 
-      <div className="pointer-events-none absolute inset-0 grain opacity-[0.08] mix-blend-overlay" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/50 via-transparent to-transparent" />
+      <div className="relative flex min-h-[42svh] flex-col overflow-hidden border-t border-brand/50 sm:min-h-[46svh] lg:min-h-0 lg:h-full lg:border-t-0">
+        <motion.div
+          className="absolute inset-0"
+          initial={shouldReduceMotion ? false : { scale: 1.1, opacity: 0.4 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 2.4, ease: easeOutExpo }}
+        >
+          <motion.div
+            className="absolute inset-0 will-change-transform"
+            style={
+              shouldReduceMotion
+                ? undefined
+                : { y: mediaY, scale: mediaScale, opacity: mediaOpacity }
+            }
+          >
+            {shouldReduceMotion ? (
+              <ProjectImage
+                src={hero.poster}
+                alt={hero.imageAlt}
+                fill
+                priority
+                tier="hero"
+                sizes="(max-width: 1024px) 100vw, 48vw"
+                className="object-cover object-center"
+              />
+            ) : (
+              <video
+                ref={videoRef}
+                className="absolute inset-0 size-full object-cover object-center brightness-[1.08] contrast-[1.03]"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster={hero.poster}
+                aria-label={hero.imageAlt}
+              />
+            )}
+          </motion.div>
+        </motion.div>
 
-      <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden>
-        <div className="mx-auto grid h-full max-w-7xl grid-cols-4 px-10">
-          <div />
-          <div className="border-l border-white/[0.07]" />
-          <div className="border-l border-white/[0.07]" />
-          <div className="border-l border-white/[0.07]" />
-        </div>
-      </div>
+        <div className="pointer-events-none absolute inset-0 grain opacity-[0.08] mix-blend-overlay" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/35 via-transparent to-transparent" />
 
-      <div className="relative z-10 flex flex-1 flex-col justify-end pt-28 sm:pt-32">
-        <Container className="pb-10 sm:pb-14 lg:pb-16">
+        <div className="relative z-10 mt-auto px-4 pb-5 pt-8 sm:px-8 sm:pb-7 lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
           <motion.div
             className="flex flex-wrap items-center gap-x-4 gap-y-2.5"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ ...load, delay: 0.85 }}
           >
-            <div className="inline-flex items-center gap-3">
-              <span className="animate-shimmer-line h-px w-9 bg-brand" aria-hidden />
-              <p className="text-hero font-display text-[11px] font-semibold uppercase tracking-[0.22em] sm:text-xs">
+            <div className="inline-flex max-w-full items-center gap-3">
+              <span className="animate-shimmer-line h-px w-7 shrink-0 bg-brand sm:w-9" aria-hidden />
+              <p className="text-hero font-display text-[10px] font-semibold uppercase tracking-[0.18em] sm:text-xs sm:tracking-[0.22em]">
                 {hero.eyebrow}
               </p>
             </div>
-
-            <span className="inline-flex items-center gap-2 border-l-2 border-brand bg-ink/55 px-3 py-1.5 font-display text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm sm:text-[11px]">
-              <span className="relative flex size-1.5">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-brand opacity-70" />
-                <span className="relative inline-flex size-1.5 rounded-full bg-brand" />
-              </span>
-              {project.status}
-            </span>
           </motion.div>
 
           <motion.h1
-            className="text-hero text-balance mt-6 max-w-4xl font-display text-[2.4rem] font-normal leading-[1] tracking-[-0.035em] min-[390px]:text-[2.7rem] sm:mt-7 sm:text-6xl sm:font-light lg:text-[4.75rem] lg:leading-[0.95]"
-            initial={{ opacity: 0, y: 26 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="text-hero text-balance mt-2 max-w-xl font-display text-[1.45rem] font-normal leading-[1.02] tracking-[-0.035em] min-[390px]:text-[1.65rem] sm:mt-3 sm:text-3xl sm:font-light lg:text-[2.35rem] lg:leading-[0.95] xl:text-[2.75rem]"
+            initial={{ opacity: 0, y: 36, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ ...load, delay: 1.05 }}
           >
-            Tu <span className="font-bold text-brand">{hero.titleAccent}</span>
+            Tu{" "}
+            <span className="animate-text-shine bg-gradient-to-r from-brand via-[#ffe08a] to-brand bg-[length:200%_auto] bg-clip-text font-bold text-transparent">
+              {hero.titleAccent}
+            </span>
             <br />
             a minutos de la ciudad
           </motion.h1>
 
           <motion.p
-            className="text-hero mt-6 max-w-lg text-base leading-relaxed sm:text-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.44, ease: [0.22, 1, 0.36, 1] }}
+            className="text-hero mt-2 hidden max-w-md text-[0.85rem] leading-relaxed sm:mt-2.5 sm:block sm:text-sm lg:line-clamp-2 lg:text-[0.9rem]"
+            initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ ...load, delay: 1.25 }}
           >
             {hero.subtitle}
           </motion.p>
 
           <motion.div
-            className="mt-9 flex flex-col gap-3 min-[480px]:flex-row min-[480px]:items-center min-[480px]:gap-5"
-            initial={{ opacity: 0, y: 16 }}
+            className="mt-3 sm:mt-3.5"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.58, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ ...load, delay: 1.4 }}
           >
-            <ButtonLink href="#proyecto" size="lg" className="group w-full min-[480px]:w-auto">
-              Ver Finca Algarrobo
+            <ButtonLink
+              href="#areas-comunes"
+              size="lg"
+              className="group w-full px-5 py-2.5 text-sm shadow-[0_12px_40px_-10px_rgba(253,185,12,0.75)] sm:w-auto sm:px-7 sm:py-3 sm:text-[0.9rem]"
+            >
+              Ver áreas comunes
               <ArrowIcon className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
             </ButtonLink>
-
-            <a
-              href="#galeria"
-              className="group inline-flex items-center justify-center gap-2 border-b border-white/30 py-2 font-display text-sm font-semibold text-white transition-colors hover:border-brand hover:text-brand min-[480px]:justify-start"
-            >
-              Ver galería
-              <ArrowIcon className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
           </motion.div>
-        </Container>
-
-        <motion.div
-          className="border-t border-brand bg-ink/85 pb-[calc(4rem+env(safe-area-inset-bottom))] backdrop-blur-md sm:pb-0"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.72, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <Container>
-            <ul className="grid grid-cols-3">
-              {stats.map((stat, index) => (
-                <li
-                  key={stat.label}
-                  title={stat.description}
-                  className={cn(
-                    "py-4 sm:py-6",
-                    index > 0 && "border-l border-white/15 pl-4 sm:pl-8"
-                  )}
-                >
-                  <p className="font-display text-2xl font-bold leading-none tracking-tight text-brand sm:text-4xl">
-                    {stat.value}
-                  </p>
-                  <p className="mt-2 text-[10px] font-medium uppercase leading-snug tracking-[0.14em] text-white/70 sm:mt-3 sm:text-xs">
-                    {stat.label}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </Container>
-        </motion.div>
+        </div>
       </div>
-
-      <a
-        href="#galeria"
-        aria-label="Ver la galería"
-        className="group absolute right-3 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-center gap-3 lg:flex xl:right-5"
-      >
-        <span className="relative h-14 w-px overflow-hidden bg-white/20">
-          <span className="animate-scroll-hint absolute inset-x-0 top-0 h-1/2 bg-brand" />
-        </span>
-        <span className="rotate-180 font-display text-[10px] font-semibold uppercase tracking-[0.3em] text-white/50 transition-colors group-hover:text-white [writing-mode:vertical-rl]">
-          Desliza
-        </span>
-      </a>
     </section>
   );
 }

@@ -1,5 +1,4 @@
-# Configuración de Apache para el sitio estático exportado con `next build`.
-# Vive en public/ para que `next build` lo copie a out/ en cada compilación.
+# Copiado a out/ en cada `next build` (export estático para cPanel).
 
 # BEGIN cPanel-generated php ini directives, do not edit
 # Manual editing of this file may result in unexpected behavior.

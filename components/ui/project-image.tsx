@@ -1,6 +1,6 @@
 import Image, { type ImageProps } from "next/image";
 
-/** Calidad para miniaturas (las fotos grandes van sin optimizar). */
+// Con `output: 'export'` no hay optimizador de Next; thumbs sí bajan calidad.
 const QUALITY = {
   hero: 100,
   featured: 100,
@@ -11,7 +11,6 @@ const QUALITY = {
 type ProjectImageProps = Omit<ImageProps, "quality"> & {
   tier?: keyof typeof QUALITY;
   quality?: number;
-  /** Por defecto las fotos del proyecto se sirven tal cual (PNG 4K). */
   unoptimized?: boolean;
 };
 
