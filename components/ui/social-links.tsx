@@ -7,20 +7,20 @@ const socialItems = [
     href: company.social.facebook,
     label: "Facebook",
     Icon: FacebookIcon,
-    iconHover: "group-hover:bg-[#1877F2] group-hover:text-white",
+    hoverIcon: "group-hover:bg-[#1877F2] group-hover:text-white",
   },
   {
     href: company.social.instagram,
     label: "Instagram",
     Icon: InstagramIcon,
-    iconHover:
+    hoverIcon:
       "group-hover:bg-gradient-to-br group-hover:from-[#f58529] group-hover:via-[#dd2a7b] group-hover:to-[#8134af] group-hover:text-white",
   },
   {
     href: company.social.tiktok,
     label: "TikTok",
     Icon: TikTokIcon,
-    iconHover: "group-hover:bg-[#010101] group-hover:text-white",
+    hoverIcon: "group-hover:bg-ink group-hover:text-white",
   },
 ] as const;
 
@@ -38,8 +38,8 @@ export function SocialLinks({
   const isDark = variant === "dark";
 
   return (
-    <div className={cn("flex flex-wrap gap-3", className)}>
-      {socialItems.map(({ href, label, Icon, iconHover }) => (
+    <div className={cn("flex flex-wrap items-center gap-2.5", className)}>
+      {socialItems.map(({ href, label, Icon, hoverIcon }) => (
         <a
           key={label}
           href={href}
@@ -47,25 +47,25 @@ export function SocialLinks({
           rel="noopener noreferrer"
           aria-label={`${label} de ${company.name}`}
           className={cn(
-            "group inline-flex items-center gap-2.5 rounded-sm border transition-all duration-300",
-            showLabels ? "px-4 py-2" : "p-2.5",
+            "group inline-flex items-center gap-2.5 rounded-full px-3 py-2 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
             isDark
-              ? "border-white/15 bg-white/5 text-white/75 hover:border-white/25 hover:bg-white/10 hover:text-white"
-              : "border-ink/10 bg-white text-ink-500 hover:border-ink/20 hover:text-ink"
+              ? "bg-white/[0.06] text-white/75 ring-1 ring-white/12 hover:-translate-y-0.5 hover:bg-white/[0.1] hover:text-white hover:ring-white/22 hover:shadow-[0_12px_28px_-14px_rgba(0,0,0,0.55)]"
+              : "bg-white text-ink/70 ring-1 ring-black/[0.06] shadow-soft hover:-translate-y-0.5 hover:text-ink hover:ring-black/10 hover:shadow-[0_12px_28px_-14px_rgba(0,0,0,0.16)]"
           )}
         >
           <span
             className={cn(
-              "flex shrink-0 items-center justify-center rounded-sm transition-all duration-300",
-              showLabels ? "size-8" : "size-9",
-              isDark ? "bg-white/10 text-white" : "bg-[#f3f2ef] text-ink-500",
-              iconHover
+              "flex size-8 shrink-0 items-center justify-center rounded-full transition-all duration-300",
+              isDark ? "bg-white/10 text-white" : "bg-[#f3f2ef] text-ink/65",
+              hoverIcon
             )}
           >
-            <Icon className={showLabels ? "size-4" : "size-5"} />
+            <Icon className="size-3.5 transition-transform duration-300 group-hover:scale-110" />
           </span>
           {showLabels ? (
-            <span className="pr-0.5 text-sm font-medium">{label}</span>
+            <span className="pr-1 font-display text-sm font-medium tracking-tight">
+              {label}
+            </span>
           ) : null}
         </a>
       ))}
