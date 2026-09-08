@@ -219,7 +219,7 @@ export function AmenitiesGallery() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.25 }}
-            className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/95 p-4 sm:p-8"
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-ink/95 p-4 sm:p-8"
             role="dialog"
             aria-modal="true"
             aria-label={`Vista ampliada: ${current.title}`}
@@ -227,9 +227,12 @@ export function AmenitiesGallery() {
           >
             <button
               type="button"
-              onClick={() => setIsLightboxOpen(false)}
+              onClick={(event) => {
+                event.stopPropagation();
+                setIsLightboxOpen(false);
+              }}
               aria-label="Cerrar galería"
-              className="absolute top-4 right-4 flex size-11 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-brand hover:bg-brand hover:text-ink sm:top-8 sm:right-8"
+              className="absolute top-4 right-4 z-20 flex size-11 items-center justify-center rounded-full border border-white/20 bg-ink/70 text-white backdrop-blur-sm transition-colors hover:border-brand hover:bg-brand hover:text-ink sm:top-8 sm:right-8"
             >
               <CloseIcon className="size-5" />
             </button>
@@ -241,13 +244,13 @@ export function AmenitiesGallery() {
                 goTo(index - 1);
               }}
               aria-label="Área común anterior"
-              className="absolute left-2 flex size-11 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-brand hover:bg-brand hover:text-ink sm:left-8"
+              className="absolute top-1/2 left-2 z-20 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-ink/70 text-white backdrop-blur-sm transition-colors hover:border-brand hover:bg-brand hover:text-ink sm:left-8"
             >
               <ArrowIcon className="size-4 rotate-180" />
             </button>
 
             <div
-              className="relative max-h-[90vh] w-full max-w-[min(96vw,1600px)]"
+              className="relative z-10 max-h-[90vh] w-full max-w-[min(96vw,1600px)]"
               onClick={(event) => event.stopPropagation()}
               onTouchStart={onTouchStart}
               onTouchEnd={onTouchEnd}
@@ -292,7 +295,7 @@ export function AmenitiesGallery() {
                 goTo(index + 1);
               }}
               aria-label="Siguiente área común"
-              className="absolute right-2 flex size-11 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-brand hover:bg-brand hover:text-ink sm:right-8"
+              className="absolute top-1/2 right-2 z-20 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-ink/70 text-white backdrop-blur-sm transition-colors hover:border-brand hover:bg-brand hover:text-ink sm:right-8"
             >
               <ArrowIcon className="size-4" />
             </button>

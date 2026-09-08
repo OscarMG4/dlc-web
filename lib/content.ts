@@ -297,7 +297,7 @@ export const project = {
     "Un condominio campestre pensado para familias que buscan aire libre, seguridad y una inversión que crece. Áreas comunes ejecutadas, ingreso controlado y alameda arborizada.",
   presentation:
     "Bajo la sombra de los algarrobos nace un hogar para criar, celebrar y quedarse. Calles arborizadas, espacios para compartir y la calma de invertir en un lugar con alma.",
-  logo: "/brand/algarrobo-horizontal.png",
+  logo: "/brand/algarrobo-horizontal-white.png",
   cover: "/projects/algarrobo/vista-aerea.webp",
   highlights: [
     { label: "Área por lote", value: "500 m²" },

@@ -28,7 +28,7 @@ export function PageIntro() {
           className="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center overflow-hidden"
           style={{
             background:
-              "radial-gradient(ellipse 90% 70% at 50% 35%, rgba(253,185,12,0.32), transparent 58%), radial-gradient(ellipse 70% 50% at 100% 0%, rgba(253,185,12,0.28), transparent 50%), radial-gradient(ellipse 60% 45% at 0% 100%, rgba(253,185,12,0.18), transparent 48%), linear-gradient(165deg, #1a140a 0%, #0c0b09 55%, #080807 100%)",
+              "radial-gradient(ellipse 80% 55% at 50% 40%, rgba(253,185,12,0.2), transparent 55%), linear-gradient(165deg, #0a0908 0%, #050505 100%)",
           }}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -36,7 +36,7 @@ export function PageIntro() {
           aria-hidden
         >
           <motion.div
-            className="pointer-events-none absolute left-1/2 top-[42%] size-[22rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/25 blur-[100px] sm:size-[28rem]"
+            className="pointer-events-none absolute left-1/2 top-[42%] size-[20rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/18 blur-[110px] sm:size-[26rem]"
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.1 }}

@@ -237,6 +237,7 @@ type WhatsAppFabProps = {
   className?: string;
   ariaLabel?: string;
   suppressBubble?: boolean;
+  children?: ReactNode;
 };
 
 const BUBBLE_DISMISS_KEY = "dlc-whatsapp-bubble-dismissed";
@@ -251,6 +252,7 @@ export function WhatsAppFab({
   className,
   ariaLabel = "Abrir opciones de WhatsApp",
   suppressBubble = false,
+  children,
 }: WhatsAppFabProps) {
   const { openPicker, isOpen } = useWhatsAppPicker();
   const shouldReduceMotion = useReducedMotion();
@@ -409,20 +411,33 @@ export function WhatsAppFab({
         onClick={openPicker}
         aria-label={ariaLabel}
         className={cn(
-          "group relative flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_16px_36px_-14px_rgba(37,211,102,0.9)] transition-transform duration-300 hover:scale-110",
+          "group relative flex items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_16px_36px_-14px_rgba(37,211,102,0.9)] transition-transform duration-300 hover:scale-105",
+          children ? "gap-2 px-4 py-3.5 sm:px-5" : "size-14",
           className
         )}
       >
-        <span className="whatsapp-ring" aria-hidden="true" />
-        <span className="whatsapp-ring whatsapp-ring-delayed" aria-hidden="true" />
-        <span className="whatsapp-button relative z-[1] flex size-full items-center justify-center">
-          <WhatsAppIcon className="size-7" />
-        </span>
-        {bubbleVisible && !isTyping ? (
-          <span className="whatsapp-badge absolute -top-0.5 -right-0.5 z-[2] flex size-5 min-w-5 items-center justify-center rounded-full bg-[#ff3b30] text-[11px] leading-none font-bold text-white shadow-md">
-            1
-          </span>
-        ) : null}
+        {children ? (
+          <>
+            <span className="whatsapp-ring" aria-hidden="true" />
+            <span className="whatsapp-ring whatsapp-ring-delayed" aria-hidden="true" />
+            <span className="relative z-[1] flex items-center gap-2">
+              {children}
+            </span>
+          </>
+        ) : (
+          <>
+            <span className="whatsapp-ring" aria-hidden="true" />
+            <span className="whatsapp-ring whatsapp-ring-delayed" aria-hidden="true" />
+            <span className="whatsapp-button relative z-[1] flex size-full items-center justify-center">
+              <WhatsAppIcon className="size-7" />
+            </span>
+            {bubbleVisible && !isTyping ? (
+              <span className="whatsapp-badge absolute -top-0.5 -right-0.5 z-[2] flex size-5 min-w-5 items-center justify-center rounded-full bg-[#ff3b30] text-[11px] leading-none font-bold text-white shadow-md">
+                1
+              </span>
+            ) : null}
+          </>
+        )}
       </button>
     </div>
   );

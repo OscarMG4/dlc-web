@@ -21,9 +21,9 @@ export function ClosingCta() {
         />
       </div>
 
-      <div className="absolute inset-0 bg-[#0c0b09]/55" />
+      <div className="absolute inset-0 bg-[#080807]/58" />
       <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_15%_85%,rgba(253,185,12,0.2),transparent_55%),linear-gradient(90deg,rgba(8,7,6,0.65),transparent_65%)]"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_15%_85%,rgba(253,185,12,0.15),transparent_55%),linear-gradient(90deg,rgba(8,7,6,0.68),transparent_65%)]"
         aria-hidden
       />
 
