@@ -1,4 +1,4 @@
-import { FacebookIcon, InstagramIcon } from "@/components/icons";
+import { FacebookIcon, InstagramIcon, TikTokIcon } from "@/components/icons";
 import { company } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +15,12 @@ const socialItems = [
     Icon: InstagramIcon,
     iconHover:
       "group-hover:bg-gradient-to-br group-hover:from-[#f58529] group-hover:via-[#dd2a7b] group-hover:to-[#8134af] group-hover:text-white",
+  },
+  {
+    href: company.social.tiktok,
+    label: "TikTok",
+    Icon: TikTokIcon,
+    iconHover: "group-hover:bg-[#010101] group-hover:text-white",
   },
 ] as const;
 

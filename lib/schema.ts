@@ -44,7 +44,11 @@ export function organizationSchema(): Record<string, unknown> {
         closes: localSeo.openingHours.closes,
       },
     ],
-    sameAs: [company.social.facebook, company.social.instagram],
+    sameAs: [
+      company.social.facebook,
+      company.social.instagram,
+      company.social.tiktok,
+    ],
   };
 }
 

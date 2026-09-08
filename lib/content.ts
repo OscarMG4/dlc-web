@@ -17,6 +17,7 @@ export const company = {
   social: {
     facebook: "https://www.facebook.com/share/1AXrKU3aNR/",
     instagram: "https://www.instagram.com/grupo.dlc.pe",
+    tiktok: "https://www.tiktok.com/@grupodlc.pe",
   },
 } as const;
 
