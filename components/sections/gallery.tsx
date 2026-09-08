@@ -12,7 +12,9 @@ import { cn } from "@/lib/utils";
 const SWIPE_THRESHOLD = 48;
 
 function galleryThumbSrc(src: string) {
-  const name = src.split("/").pop()?.replace(/\.png$/, ".jpg") ?? "";
+  // Las miniaturas viven como .jpg; las imágenes grandes pueden ser .webp/.png.
+  const name =
+    src.split("/").pop()?.replace(/\.(png|webp|jpe?g)$/i, ".jpg") ?? "";
   return `/projects/algarrobo/thumbs/${name}`;
 }
 
