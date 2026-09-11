@@ -33,15 +33,15 @@ export function SectionHeading({
       {eyebrow ? (
         <div
           className={cn(
-            "inline-flex items-center gap-3",
+            "inline-flex items-center gap-3.5",
             align === "center" && "mx-auto"
           )}
         >
           {index ? (
             <span
               className={cn(
-                "font-display text-[11px] font-semibold tabular-nums tracking-[0.08em]",
-                isDark ? "text-brand/80" : "text-brand-dark/90"
+                "font-display text-[11px] font-semibold tabular-nums tracking-[0.1em]",
+                isDark ? "text-brand" : "text-brand-dark"
               )}
             >
               {index}
@@ -49,15 +49,15 @@ export function SectionHeading({
           ) : null}
           <span
             className={cn(
-              "h-px w-6",
-              isDark ? "bg-brand/50" : "bg-brand/70"
+              "h-px w-10",
+              isDark ? "bg-brand/55" : "bg-brand/75"
             )}
             aria-hidden
           />
           <p
             className={cn(
-              "font-display text-[11px] font-semibold uppercase tracking-[0.2em]",
-              isDark ? "text-white/55" : "text-ink-500"
+              "font-display text-[11px] font-semibold uppercase tracking-[0.16em]",
+              isDark ? "text-white/50" : "text-ink-500"
             )}
           >
             {eyebrow}
@@ -67,7 +67,7 @@ export function SectionHeading({
 
       <h2
         className={cn(
-          "text-balance mt-5 font-display text-[1.7rem] font-semibold leading-[1.08] tracking-[-0.035em] sm:mt-6 sm:text-[2.45rem] lg:text-[2.95rem]",
+          "text-balance mt-5 font-display text-[1.85rem] font-semibold leading-[1.05] tracking-[-0.04em] sm:mt-6 sm:text-[2.6rem] lg:text-[3.15rem]",
           isDark ? "text-white" : "text-ink"
         )}
       >
@@ -77,8 +77,8 @@ export function SectionHeading({
       {description ? (
         <p
           className={cn(
-            "mt-5 max-w-xl text-[0.98rem] leading-[1.7] sm:mt-6 sm:text-[1.05rem]",
-            isDark ? "text-white/50" : "text-ink-500",
+            "mt-5 max-w-xl text-[0.98rem] leading-[1.75] sm:mt-6 sm:text-[1.06rem]",
+            isDark ? "text-white/48" : "text-ink-500",
             align === "center" && "mx-auto"
           )}
         >

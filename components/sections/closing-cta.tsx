@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { ContactFormButton } from "@/components/widgets/contact-form-provider";
 import { WhatsAppButton } from "@/components/widgets/whatsapp-provider";
-import { company, project } from "@/lib/content";
+import { company, lotOffer, project } from "@/lib/content";
 
 export function ClosingCta() {
   return (
@@ -34,9 +34,10 @@ export function ClosingCta() {
               {project.status}
             </p>
 
-            <h2 className="text-balance mt-5 font-display text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.035em] text-white sm:mt-6 sm:text-[2.9rem]">
-              Tu lote de <span className="text-brand">500 m²</span> te espera en
-              Finca Algarrobo
+            <h2 className="mt-5 font-display text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.035em] text-white sm:mt-6 sm:text-[2.9rem]">
+              Tu terreno desde <span className="text-brand">{lotOffer.size}</span>
+              <br />
+              {lotOffer.forHomes}.
             </h2>
             <p className="mt-5 max-w-lg text-[0.98rem] leading-[1.7] text-white/60 sm:mt-6 sm:text-[1.05rem]">
               {company.secondaryTagline}. Agenda una visita o escríbenos hoy.

@@ -14,11 +14,11 @@ export default function HomePage() {
     <>
       <Hero />
       <ProjectPlan />
+      <InvestmentValue />
       <ProjectAmenities />
       <MarqueeBand />
       <Testimonials />
       <About />
-      <InvestmentValue />
       <Location />
       <ClosingCta />
       <Contact />

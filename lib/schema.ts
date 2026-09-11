@@ -75,7 +75,7 @@ export function projectSchema(): Record<string, unknown> {
     image: absoluteUrl(project.cover),
     address: {
       "@type": "PostalAddress",
-      addressLocality: company.city,
+      addressLocality: "Capote, Chiclayo",
       addressRegion: company.region,
       addressCountry: "PE",
     },

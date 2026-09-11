@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CloseIcon } from "@/components/icons";
 import { ButtonLink } from "@/components/ui/button";
 import { company } from "@/lib/content";
@@ -11,15 +11,25 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "#plano", id: "plano", label: "Plano" },
+  { href: "#inversion", id: "inversion", label: "Inversión" },
   { href: "#areas-comunes", id: "areas-comunes", label: "Áreas" },
+  { href: "#reseñas", id: "reseñas", label: "Reseñas" },
   { href: "#nosotros", id: "nosotros", label: "Nosotros" },
   { href: "#ubicacion", id: "ubicacion", label: "Ubicación" },
+] as const;
+
+const sectionIds = [
+  "inicio",
+  ...navLinks.map((link) => link.id),
+  "contacto",
 ] as const;
 
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState<string>("inicio");
+  const [pill, setPill] = useState({ left: 0, width: 0, ready: false });
+  const navListRef = useRef<HTMLUListElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -38,40 +48,57 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const update = () => {
+      setScrolled(window.scrollY > 40);
+
+      const marker = window.innerHeight * 0.3;
+      let current: string = sectionIds[0];
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= marker) {
+          current = id;
+        }
+      }
+
+      setActiveId(current);
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
-  useEffect(() => {
-    const sectionIds = ["inicio", ...navLinks.map((link) => link.id), "contacto"];
-    const elements = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => Boolean(el));
+  useLayoutEffect(() => {
+    const list = navListRef.current;
+    if (!list) return;
 
-    if (elements.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        const top = visible[0];
-        if (top?.target.id) setActiveId(top.target.id);
-      },
-      {
-        root: null,
-        threshold: [0.15, 0.35, 0.55],
-        rootMargin: "-18% 0px -55% 0px",
-      }
+    const activeItem = list.querySelector<HTMLElement>(
+      `[data-nav-id="${CSS.escape(activeId)}"]`
     );
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+    if (!activeItem) {
+      setPill((prev) => ({ ...prev, ready: false }));
+      return;
+    }
+
+    const listRect = list.getBoundingClientRect();
+    const itemRect = activeItem.getBoundingClientRect();
+
+    setPill({
+      left: itemRect.left - listRect.left,
+      width: itemRect.width,
+      ready: true,
+    });
+  }, [activeId, scrolled]);
 
   const closeMenu = () => setIsMenuOpen(false);
+  const contactActive = activeId === "contacto";
 
   return (
     <>
@@ -80,7 +107,7 @@ export function SiteHeader() {
           className={cn(
             "mx-auto transition-[padding,max-width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
             scrolled
-              ? "max-w-5xl px-3 pt-[max(0.5rem,env(safe-area-inset-top))] sm:px-4 sm:pt-3"
+              ? "max-w-6xl px-3 pt-[max(0.5rem,env(safe-area-inset-top))] sm:px-4 sm:pt-3"
               : "max-w-7xl px-3 pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 sm:pt-5"
           )}
           initial={
@@ -132,39 +159,38 @@ export function SiteHeader() {
               className="absolute left-1/2 top-1/2 z-[1] hidden -translate-x-1/2 -translate-y-1/2 lg:block"
             >
               <ul
+                ref={navListRef}
                 className={cn(
-                  "flex items-center gap-0.5 p-1 transition-all duration-500",
+                  "relative flex items-center gap-0.5 p-1 transition-all duration-500",
                   scrolled
                     ? "rounded-full bg-white/[0.05] ring-1 ring-white/8"
                     : "rounded-full bg-black/35 ring-1 ring-white/10 backdrop-blur-xl"
                 )}
               >
+                <span
+                  aria-hidden
+                  className={cn(
+                    "pointer-events-none absolute top-1 bottom-1 rounded-full bg-brand transition-[left,width,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                    pill.ready ? "opacity-100" : "opacity-0"
+                  )}
+                  style={{ left: pill.left, width: pill.width }}
+                />
+
                 {navLinks.map(({ href, id, label }) => {
                   const isActive = activeId === id;
 
                   return (
-                    <li key={href}>
+                    <li key={href} data-nav-id={id} className="relative z-[1]">
                       <a
                         href={href}
                         className={cn(
-                          "relative inline-flex items-center rounded-full px-4 py-2 font-display text-[13px] font-medium tracking-tight transition-colors duration-300",
+                          "relative inline-flex items-center rounded-full px-3 py-2 font-display text-[12px] font-medium tracking-tight transition-colors duration-300 xl:px-3.5 xl:text-[13px]",
                           isActive
                             ? "text-ink"
                             : "text-white/70 hover:text-white"
                         )}
                       >
-                        {isActive ? (
-                          <motion.span
-                            layoutId="nav-active-pill"
-                            className="absolute inset-0 rounded-full bg-brand shadow-[0_6px_20px_-8px_rgba(253,185,12,0.8)]"
-                            transition={{
-                              type: "spring",
-                              stiffness: 380,
-                              damping: 30,
-                            }}
-                          />
-                        ) : null}
-                        <span className="relative z-[1]">{label}</span>
+                        {label}
                       </a>
                     </li>
                   );
@@ -179,11 +205,11 @@ export function SiteHeader() {
                 onClick={closeMenu}
                 className={cn(
                   "hidden rounded-full font-semibold transition-all duration-500 sm:inline-flex",
-                  scrolled
+                  scrolled || contactActive
                     ? "px-5 py-2.5 text-[11px] tracking-[0.08em]"
                     : "border border-white/20 bg-white/10 px-5 py-2.5 text-[11px] tracking-[0.08em] text-white shadow-none backdrop-blur-md hover:border-brand hover:bg-brand hover:text-ink"
                 )}
-                variant={scrolled ? "primary" : "ghost"}
+                variant={scrolled || contactActive ? "primary" : "ghost"}
               >
                 Contacto
               </ButtonLink>

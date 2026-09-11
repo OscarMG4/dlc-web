@@ -14,14 +14,14 @@ type RevealProps = {
 export function Reveal({
   children,
   delay = 0,
-  y = 56,
+  y = 28,
   className,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const isInView = useInView(ref, {
-    amount: 0.18,
-    margin: "0px 0px -8% 0px",
+    amount: 0.16,
+    margin: "0px 0px -6% 0px",
     once: true,
   });
 
@@ -39,18 +39,14 @@ export function Reveal({
           : {
               opacity: 0,
               y: offset,
-              scale: 0.97,
-              filter: "blur(8px)",
             }
       }
       animate={{
         opacity: visible ? 1 : 0,
         y: visible ? 0 : offset,
-        scale: visible ? 1 : 0.97,
-        filter: visible ? "blur(0px)" : "blur(8px)",
       }}
       transition={{
-        duration: shouldReduceMotion ? 0 : 1.65,
+        duration: shouldReduceMotion ? 0 : 0.85,
         ease: easeOutExpo,
         delay: visible && !shouldReduceMotion ? delay : 0,
       }}

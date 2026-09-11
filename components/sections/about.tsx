@@ -11,19 +11,19 @@ export function About() {
         <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
           <Reveal className="order-2 lg:order-1">
             <div className="relative">
-              <div className="group relative aspect-[4/5] overflow-hidden rounded-[1.35rem] shadow-elevated sm:aspect-[3/4]">
+              <div className="group relative aspect-[4/5] overflow-hidden rounded-[1.5rem] shadow-elevated sm:aspect-[3/4]">
                 <ProjectImage
                   src="/projects/algarrobo/alameda.webp"
                   alt="Alameda arborizada dentro del condominio Finca Algarrobo"
                   fill
                   tier="featured"
                   sizes="(max-width: 1024px) 100vw, 45vw"
-                  className="object-cover transition-transform duration-[1.8s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.045]"
+                  className="object-cover transition-transform duration-[1.6s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/28 via-transparent to-transparent" />
               </div>
 
-              <div className="absolute -right-3 -bottom-4 hidden w-[40%] overflow-hidden rounded-2xl shadow-elevated ring-[5px] ring-[#f2f1ee] sm:block sm:-right-5 sm:-bottom-5">
+              <div className="absolute -right-3 -bottom-4 hidden w-[40%] overflow-hidden rounded-2xl shadow-elevated ring-[6px] ring-[#f4f2ed] sm:block sm:-right-5 sm:-bottom-5">
                 <div className="relative aspect-[4/3]">
                   <ProjectImage
                     src="/projects/algarrobo/pileta.webp"
@@ -40,7 +40,7 @@ export function About() {
 
           <div className="order-1 lg:order-2">
             <SectionHeading
-              index="05"
+              index="06"
               eyebrow={about.eyebrow}
               title={about.title}
               description="Construimos hogares, rentabilidad y patrimonio en el norte del Perú."

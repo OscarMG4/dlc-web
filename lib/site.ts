@@ -12,15 +12,16 @@ function resolveSiteUrl(): string {
 
 export const siteConfig = {
   name: "Grupo DLC",
-  title: "Grupo DLC | Lotes para casa de campo en Chiclayo",
+  title: "Grupo DLC | Terrenos desde 500 m² para casas de campo en Chiclayo",
   description:
-    "Inmobiliaria en Chiclayo especializada en lotes de casa de campo de 500 m². Más de 250 familias ya construyen su patrimonio con Grupo DLC en Finca Algarrobo.",
+    "Terrenos desde 500 m² para casas de campo en Capote, Chiclayo. Más de 250 familias ya construyen su patrimonio con Grupo DLC en Finca Algarrobo.",
   url: resolveSiteUrl(),
   locale: "es_PE",
   lang: "es-PE",
   keywords: [
     "lotes en Chiclayo",
     "casa de campo Chiclayo",
+    "terrenos desde 500 m2",
     "lotes 500 m2",
     "inmobiliaria Chiclayo",
     "Finca Algarrobo",

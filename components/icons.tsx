@@ -226,6 +226,43 @@ export function ShieldIcon(props: IconProps) {
   );
 }
 
+export function WaterDropIcon(props: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M12 3c3.5 4.8 6.5 8.2 6.5 11.2A6.5 6.5 0 0 1 5.5 14.2C5.5 11.2 8.5 7.8 12 3Z" />
+      <path d="M12 16.5c1.4 0 2.5-1 2.5-2.2" />
+    </svg>
+  );
+}
+
+export function FileTextIcon(props: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" />
+      <path d="M14 3v5h5" />
+      <path d="M9 13h6M9 17h6" />
+    </svg>
+  );
+}
+
 export function SendIcon(props: IconProps) {
   return (
     <svg
@@ -240,6 +277,14 @@ export function SendIcon(props: IconProps) {
     >
       <path d="M22 2 11 13" />
       <path d="M22 2 15 22l-4-9-9-4 20-7Z" />
+    </svg>
+  );
+}
+
+export function StarIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M12 2.6 14.9 9l6.9.6-5.2 4.5 1.6 6.7L12 17.6 5.8 20.8l1.6-6.7L2.2 9.6 9.1 9 12 2.6Z" />
     </svg>
   );
 }

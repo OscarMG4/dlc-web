@@ -21,6 +21,16 @@ export const company = {
   },
 } as const;
 
+/** Mensaje comercial de referencia para superficie de lotes. */
+export const lotOffer = {
+  size: "500 m²",
+  from: "desde 500 m²",
+  forHomes: "para casas de campo",
+  headline: "Tu terreno desde 500 m² para casas de campo.",
+  short: "Terrenos desde 500 m²",
+  accentLine: "Desde 500 m²",
+} as const;
+
 type GeoPoint = { latitude: number; longitude: number };
 
 export const localSeo: {
@@ -34,7 +44,7 @@ export const localSeo: {
   };
 } = {
   officeGeo: { latitude: -6.785285467835872, longitude: -79.83614267116401 },
-  projectGeo: null,
+  projectGeo: { latitude: -6.718491538092833, longitude: -79.8217495693205 },
   priceRange: null,
   openingHours: {
     days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -47,7 +57,7 @@ export const whatsappQuickQuestions = [
   {
     id: "general",
     label: "Información sobre Finca Algarrobo",
-    description: "Conocer el proyecto, áreas comunes y lotes de 500 m²",
+    description: `Conocer el proyecto, áreas comunes y terrenos ${lotOffer.from} ${lotOffer.forHomes}`,
     message: company.whatsappMessage,
   },
   {
@@ -142,10 +152,10 @@ export const stats = [
     description: "Lotes para casa de campo colocados en la región Lambayeque.",
   },
   {
-    value: "500 m²",
-    label: "Por lote",
+    value: lotOffer.accentLine,
+    label: "Para casas de campo",
     description:
-      "Fuimos de los primeros en ofrecer lotes de casa de campo de 500 m² en Chiclayo.",
+      "Terrenos desde 500 m² para casas de campo en Capote, Chiclayo.",
   },
 ] as const;
 
@@ -155,7 +165,7 @@ export const completedProjects = [
     type: "Departamentos",
     logo: "/brand/projects/la-alameda.png",
     width: 560,
-    height: 93,
+    height: 186,
   },
   {
     name: "El Golf",
@@ -209,34 +219,37 @@ export const completedProjects = [
 ] as const;
 
 export const testimonials = {
-  eyebrow: "Voces del campo",
-  title: "Historias que nacen en el terreno",
+  eyebrow: "Reseñas",
+  title: "Lo que dicen quienes ya nos visitaron",
   description:
-    "Visitas, recorridos y cierres con el mismo cuidado: cercanía, claridad y acompañamiento real.",
+    "Opiniones de familias y clientes que conocieron Finca Algarrobo y trabajaron con Grupo DLC.",
   items: [
     {
       quote:
-        "Fuimos a conocer el terreno en familia y se notó la transparencia. Nos explicaron todo con claridad y nos sentimos acompañados desde el primer día.",
-      name: "Una tarde bajo el algarrobo",
-      role: "Primera visita al condominio",
+        "Excelente atención. Fuimos en familia a ver el terreno y nos explicaron todo con claridad, sin rodeos. Se nota que conocen el proyecto.",
+      name: "Familia R.",
+      role: "Visita a Finca Algarrobo",
+      rating: 5,
       image: "/reviews/familia-visita.webp",
       imageAlt:
         "Familia junto al equipo de Grupo DLC durante una visita al terreno",
     },
     {
       quote:
-        "Ver el plano en el mismo terreno nos ayudó a imaginar nuestro lote. El equipo fue muy atento y resolvió todas nuestras dudas al instante.",
-      name: "El plano cobró vida",
-      role: "Recorrido guiado en campo",
+        "Muy recomendados. Revisamos el plano ahí mismo en el lote y eso nos ayudó a decidir. El equipo fue atento y resolvió todas nuestras dudas.",
+      name: "Carlos M.",
+      role: "Recorrido en Capote",
+      rating: 5,
       image: "/reviews/visita-terreno.webp",
       imageAlt:
         "Clientes y asesores de Grupo DLC revisando el plano en el terreno",
     },
     {
       quote:
-        "Cerramos con confianza. En la oficina nos entregaron la información completa y el trato fue cercano, profesional y sin complicaciones.",
-      name: "De la consulta al sí",
-      role: "Cierre en oficina DLC",
+        "Cerramos tranquilos. En la oficina nos dieron la información completa y el trato fue profesional, cercano y sin presión. Volvería a comprar con ellos.",
+      name: "Percy",
+      role: "Cliente · Oficina Chiclayo",
+      rating: 5,
       image: "/reviews/entrega-oficina.webp",
       imageAlt:
         "Asesor de Grupo DLC con un cliente satisfecho en la oficina",
@@ -247,9 +260,24 @@ export const testimonials = {
 /** Solo hechos ya comunicados por la marca (no inventar beneficios). */
 export const purchaseIncludes = [
   {
-    title: "500 m² por lote",
+    title: lotOffer.short,
     description:
-      "Uno de los primeros formatos de casa de campo de esta superficie en Chiclayo.",
+      "Tu terreno desde 500 m² para casas de campo, en un formato pionero en Chiclayo.",
+  },
+  {
+    title: "Punto de agua en cada lote",
+    description:
+      "Cada lote cuenta con punto de agua para facilitar tu proyecto de construcción.",
+  },
+  {
+    title: "Minuta y escritura pública",
+    description:
+      "Elevamos a registros públicos mediante acciones y derechos, con minuta y escritura pública.",
+  },
+  {
+    title: "Ubicación Chiclayo – Capote",
+    description:
+      "Finca Algarrobo se ubica en Capote, Chiclayo: campo cerca de la ciudad.",
   },
   {
     title: "Áreas comunes ejecutadas",
@@ -259,11 +287,6 @@ export const purchaseIncludes = [
   {
     title: "Ingreso controlado",
     description: "Acceso con caseta de control y portón al condominio.",
-  },
-  {
-    title: "Respaldo legal y comercial",
-    description:
-      "Habilitación, documentación y acompañamiento durante todo el proceso de compra.",
   },
   {
     title: "Venta directa",
@@ -290,7 +313,7 @@ export const lotUses = [
   {
     title: "Reventa con plusvalía",
     description:
-      "Invierte en un formato pionero de 500 m² en la región Lambayeque.",
+      "Invierte en terrenos desde 500 m² para casas de campo en la región Lambayeque.",
   },
 ] as const;
 
@@ -331,17 +354,18 @@ export const project = {
   headline: "Condominio campestre para vivir y crecer",
   tagline: "Campo para tu familia, cerca de la ciudad",
   summary:
-    "Un condominio campestre pensado para familias que buscan aire libre, seguridad y una inversión que crece. Áreas comunes ejecutadas, ingreso controlado y alameda arborizada.",
+    "Condominio campestre en Capote, Chiclayo. Terrenos desde 500 m² para casas de campo, con punto de agua, áreas comunes ejecutadas, ingreso controlado y compra con minuta y escritura pública elevada a registros públicos mediante acciones y derechos.",
   presentation:
-    "Bajo la sombra de los algarrobos nace un hogar para criar, celebrar y quedarse. Calles arborizadas, espacios para compartir y la calma de invertir en un lugar con alma.",
+    "En Capote, bajo la sombra de los algarrobos, nace un hogar para criar, celebrar y quedarse. Terrenos desde 500 m² para casas de campo, con calles arborizadas y espacios para compartir.",
   logo: "/brand/algarrobo-horizontal-white.png",
   cover: "/projects/algarrobo/vista-aerea.webp",
   plan: "/projects/algarrobo/plano-lotes.webp",
-  planAlt: "Plano de lotización y vías de Finca Algarrobo",
+  planAlt:
+    "Plano maestro de Finca Algarrobo con lotes, amenidades y leyenda de disponibilidad",
   highlights: [
-    { label: "Área por lote", value: "500 m²" },
-    { label: "Modalidad", value: "Venta directa" },
-    { label: "Ubicación", value: "Chiclayo, Lambayeque" },
+    { label: "Terreno", value: lotOffer.accentLine },
+    { label: "Uso", value: "Casas de campo" },
+    { label: "Ubicación", value: "Chiclayo – Capote" },
   ],
   amenities: [
     {
@@ -383,10 +407,10 @@ export const project = {
 } as const;
 
 export const hero = {
-  eyebrow: `${company.name} · ${company.city}`,
+  eyebrow: `${company.name} · Chiclayo – Capote`,
   titleAccent: "casa de campo",
   subtitle:
-    "Más de 250 familias ya construyen su hogar aquí. Seguridad, aire libre y comunidad.",
+    "Terrenos desde 500 m² para casas de campo en Capote, Chiclayo. Más de 250 familias ya construyen su hogar aquí.",
   // Móvil: no usar el máster (~240 MB). Usar videoMobile.
   video: "/projects/algarrobo/videorender.mp4",
   videoMobile: "/projects/algarrobo/videorender-mobile.mp4",
@@ -475,3 +499,17 @@ export const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(
 export const mapLinkUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
   company.addressFull
 )}`;
+
+const projectCoords = localSeo.projectGeo!;
+
+export const projectLocation = {
+  label: "Finca Algarrobo",
+  place: "Chiclayo – Capote",
+  region: "Lambayeque, Perú",
+  latitude: projectCoords.latitude,
+  longitude: projectCoords.longitude,
+} as const;
+
+export const projectMapEmbedUrl = `https://www.google.com/maps?q=${projectLocation.latitude},${projectLocation.longitude}&z=15&output=embed`;
+
+export const projectMapLinkUrl = `https://www.google.com/maps/search/?api=1&query=${projectLocation.latitude},${projectLocation.longitude}`;

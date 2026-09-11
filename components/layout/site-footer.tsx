@@ -4,9 +4,10 @@ import { SocialLinks } from "@/components/ui/social-links";
 import { company, mapLinkUrl } from "@/lib/content";
 
 const links = [
-  { href: "#proyecto", label: "Finca Algarrobo" },
   { href: "#plano", label: "Plano" },
+  { href: "#inversion", label: "Inversión" },
   { href: "#areas-comunes", label: "Áreas comunes" },
+  { href: "#reseñas", label: "Reseñas" },
   { href: "#nosotros", label: "Sobre nosotros" },
   { href: "#ubicacion", label: "Ubicación" },
   { href: "#contacto", label: "Contacto" },

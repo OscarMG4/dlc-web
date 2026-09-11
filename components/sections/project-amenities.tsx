@@ -11,7 +11,7 @@ export function ProjectAmenities() {
     >
       <Container className="relative">
         <SectionHeading
-          index="03"
+          index="04"
           eyebrow="Áreas comunes"
           title="Así se vive Finca Algarrobo"
           description="Parque, deporte y descanso ya ejecutados. Recorre cada espacio como en una galería."

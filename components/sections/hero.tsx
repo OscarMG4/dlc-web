@@ -5,13 +5,14 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowIcon,
+  FileTextIcon,
   HomeIcon,
-  ShieldIcon,
-  TreeIcon,
+  PinIcon,
+  WaterDropIcon,
 } from "@/components/icons";
 import { ButtonLink } from "@/components/ui/button";
 import { ProjectImage } from "@/components/ui/project-image";
-import { gallery, hero, project } from "@/lib/content";
+import { gallery, hero, lotOffer, project } from "@/lib/content";
 import { easeOutExpo } from "@/lib/motion";
 
 // `lg` (1024px): video desktop; abajo, video móvil liviano.
@@ -25,21 +26,21 @@ function resolveHeroVideoSrc() {
 const heroFacts = [
   {
     Icon: HomeIcon,
-    value: "500 m²",
-    label: "Área por lote",
-    shortLabel: "Área",
+    value: lotOffer.accentLine,
+    label: "Para casas de campo",
+    shortLabel: "500 m²",
   },
   {
-    Icon: TreeIcon,
-    value: "7 áreas",
-    label: "Áreas comunes",
-    shortLabel: "Áreas",
+    Icon: WaterDropIcon,
+    value: "Agua en lote",
+    label: "Punto de agua en cada lote",
+    shortLabel: "Agua",
   },
   {
-    Icon: ShieldIcon,
-    value: "Venta directa",
-    label: "Sin intermediarios",
-    shortLabel: "Modalidad",
+    Icon: PinIcon,
+    value: "Capote",
+    label: "Chiclayo – Capote",
+    shortLabel: "Ubicación",
   },
 ] as const;
 
@@ -119,15 +120,15 @@ export function Hero() {
       </div>
 
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/62 via-black/42 to-black/85 sm:bg-gradient-to-r sm:from-black/88 sm:via-black/62 sm:to-black/22 lg:from-black/84 lg:via-black/55 lg:to-black/14"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/38 to-black/82 sm:bg-gradient-to-r sm:from-black/86 sm:via-black/58 sm:to-black/18 lg:from-black/80 lg:via-black/48 lg:to-black/10"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/72 via-transparent to-black/32"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/25"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_15%_40%,rgba(253,185,12,0.09),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_65%_48%_at_12%_38%,rgba(253,185,12,0.07),transparent_58%)]"
         aria-hidden
       />
 
@@ -294,15 +295,15 @@ export function Hero() {
           </motion.div>
         </div>
 
-        <div className="safe-bottom border-t border-white/[0.08] bg-black/70 shadow-[0_-8px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl pb-fab lg:pb-0">
+        <div className="safe-bottom border-t border-white/[0.07] bg-black/55 shadow-[0_-12px_48px_rgba(0,0,0,0.3)] backdrop-blur-2xl pb-fab lg:pb-0">
           <div className="mx-auto max-w-7xl px-3 py-3.5 sm:px-6 sm:py-4 md:px-8 lg:px-10">
-            <ul className="grid grid-cols-3 gap-2 sm:gap-5 md:gap-8 lg:flex lg:items-center lg:gap-12 xl:gap-16">
+            <ul className="grid grid-cols-3 gap-2 sm:gap-5 md:gap-8 lg:flex lg:items-center lg:gap-14 xl:gap-16">
               {heroFacts.map(({ Icon, value, label, shortLabel }) => (
                 <li
                   key={`bar-${label}`}
                   className="group flex min-w-0 flex-col items-center gap-2 text-center sm:flex-row sm:items-center sm:gap-3.5 sm:text-left"
                 >
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white/[0.06] text-brand ring-1 ring-white/10 transition-all duration-300 group-hover:bg-brand group-hover:text-ink group-hover:ring-brand sm:size-10">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand text-ink shadow-[0_8px_22px_-10px_rgba(253,185,12,0.85)] transition-transform duration-300 group-hover:scale-105 sm:size-10">
                     <Icon className="size-3.5 sm:size-4" />
                   </span>
                   <span className="min-w-0">
@@ -310,7 +311,7 @@ export function Hero() {
                       <span className="sm:hidden">{shortLabel}</span>
                       <span className="hidden sm:inline">{label}</span>
                     </span>
-                    <span className="block truncate font-display text-[11px] font-semibold text-white min-[380px]:text-xs sm:text-sm md:text-[0.95rem]">
+                    <span className="block truncate font-display text-[11px] font-semibold tracking-tight text-white min-[380px]:text-xs sm:text-sm md:text-[0.95rem]">
                       {value}
                     </span>
                   </span>

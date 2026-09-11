@@ -1,9 +1,29 @@
+import { StarIcon } from "@/components/icons";
 import { Container } from "@/components/ui/container";
 import { ProjectImage } from "@/components/ui/project-image";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { testimonials } from "@/lib/content";
 import { cn } from "@/lib/utils";
+
+function Stars({
+  rating,
+  className,
+}: {
+  rating: number;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn("flex items-center gap-1", className)}
+      aria-label={`${rating} de 5 estrellas`}
+    >
+      {Array.from({ length: rating }, (_, index) => (
+        <StarIcon key={index} className="size-4 text-brand sm:size-5" />
+      ))}
+    </div>
+  );
+}
 
 export function Testimonials() {
   const [featured, ...rest] = testimonials.items;
@@ -15,34 +35,50 @@ export function Testimonials() {
       className="section-py relative overflow-hidden text-white panel-warm"
     >
       <div
-        className="pointer-events-none absolute -left-24 top-1/3 size-[28rem] rounded-full bg-brand/10 blur-[120px]"
+        className="pointer-events-none absolute -right-24 top-10 size-[26rem] rounded-full bg-brand/[0.08] blur-[110px]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -left-20 bottom-0 size-[20rem] rounded-full bg-brand/[0.05] blur-[100px]"
         aria-hidden
       />
 
       <Container className="relative">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-12">
           <SectionHeading
-            index="04"
+            index="05"
             eyebrow={testimonials.eyebrow}
             title={testimonials.title}
             description={testimonials.description}
             tone="dark"
-            className="lg:max-w-xl"
           />
-          <Reveal delay={0.12} className="hidden lg:block lg:pb-2">
-            <p className="max-w-[14rem] text-right font-display text-[11px] font-medium uppercase leading-relaxed tracking-[0.18em] text-white/35">
-              Experiencias reales
-              <br />
-              con Grupo DLC
-            </p>
+
+          <Reveal delay={0.1}>
+            <div className="flex flex-wrap items-center gap-4 rounded-[1.5rem] border border-brand/25 bg-gradient-to-br from-brand/15 via-brand/[0.04] to-transparent px-5 py-5 sm:gap-6 sm:px-7 sm:py-6">
+              <div>
+                <p className="font-display text-5xl font-semibold tracking-tight text-brand sm:text-6xl">
+                  5.0
+                </p>
+                <Stars rating={5} className="mt-2" />
+              </div>
+              <div className="min-w-0 flex-1 border-l border-white/10 pl-4 sm:pl-6">
+                <p className="font-display text-base font-semibold text-white sm:text-lg">
+                  Valoración de clientes
+                </p>
+                <p className="mt-1.5 text-sm leading-relaxed text-white/45 sm:text-[0.95rem]">
+                  Experiencias reales en visita, recorrido y cierre con Grupo
+                  DLC.
+                </p>
+              </div>
+            </div>
           </Reveal>
         </div>
 
-        <div className="mt-12 grid gap-5 lg:mt-16 lg:grid-cols-12 lg:gap-6">
-          {featured ? (
+        {featured ? (
+          <div className="mt-10 grid gap-5 lg:mt-14 lg:grid-cols-12 lg:gap-7">
             <Reveal className="lg:col-span-7">
-              <article className="group relative overflow-hidden rounded-[1.5rem] ring-1 ring-white/10">
-                <div className="relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5] xl:min-h-[36rem]">
+              <article className="group relative overflow-hidden rounded-[1.75rem] ring-1 ring-white/10">
+                <div className="relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-auto lg:min-h-[40rem] xl:min-h-[44rem]">
                   <ProjectImage
                     src={featured.image}
                     alt={featured.imageAlt}
@@ -51,78 +87,76 @@ export function Testimonials() {
                     sizes="(max-width: 1024px) 100vw, 58vw"
                     className="object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/10" />
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_20%_100%,rgba(253,185,12,0.18),transparent_55%)]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/15" />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_20%_100%,rgba(253,185,12,0.18),transparent_55%)]" />
 
-                  <div className="absolute inset-x-0 bottom-0 flex flex-col p-6 sm:p-8 lg:p-10">
-                    <div className="mb-5 flex items-center gap-3">
-                      <span className="font-display text-[11px] font-semibold tabular-nums tracking-[0.16em] text-brand">
-                        01
+                  <div className="absolute inset-x-0 bottom-0 flex flex-col p-6 sm:p-9 lg:p-11">
+                    <div className="mb-5 flex flex-wrap items-center gap-3">
+                      <span className="rounded-full bg-brand px-3.5 py-1.5 font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-ink">
+                        Destacada
                       </span>
-                      <span className="h-px w-8 bg-brand/60" aria-hidden />
-                      <span className="font-display text-[11px] font-semibold uppercase tracking-[0.16em] text-white/50">
-                        {featured.role}
-                      </span>
+                      <Stars rating={featured.rating} />
                     </div>
 
-                    <h3 className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                      {featured.name}
-                    </h3>
-
-                    <p className="mt-4 max-w-md text-[0.98rem] leading-relaxed text-white/70 sm:text-base">
+                    <p className="max-w-xl font-display text-2xl font-medium leading-snug tracking-tight text-white sm:text-[1.75rem] lg:text-[1.9rem]">
                       “{featured.quote}”
                     </p>
+
+                    <div className="mt-7 flex items-center gap-3.5 border-t border-white/15 pt-6">
+                      <span className="flex size-11 items-center justify-center rounded-full bg-brand/20 font-display text-base font-bold text-brand">
+                        {featured.name.charAt(0)}
+                      </span>
+                      <div>
+                        <p className="font-display text-lg font-semibold text-white">
+                          {featured.name}
+                        </p>
+                        <p className="text-sm text-white/45">{featured.role}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </article>
             </Reveal>
-          ) : null}
 
-          <div className="flex flex-col gap-5 lg:col-span-5 lg:gap-6">
-            {rest.map((item, index) => (
-              <Reveal key={item.image} delay={0.1 + index * 0.08} className="h-full">
-                <article
-                  className={cn(
-                    "group relative flex h-full overflow-hidden rounded-[1.35rem] ring-1 ring-white/10",
-                    "bg-white/[0.03] transition-all duration-500 hover:bg-white/[0.05] hover:ring-white/18"
-                  )}
+            <div className="flex flex-col gap-5 lg:col-span-5 lg:gap-7">
+              {rest.map((item, index) => (
+                <Reveal
+                  key={item.image}
+                  delay={0.1 + index * 0.08}
+                  className="h-full"
                 >
-                  <div className="relative w-[42%] shrink-0 overflow-hidden sm:w-[38%]">
-                    <ProjectImage
-                      src={item.image}
-                      alt={item.imageAlt}
-                      fill
-                      tier="gallery"
-                      sizes="(max-width: 1024px) 40vw, 20vw"
-                      className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0a0908]/40" />
-                  </div>
-
-                  <div className="flex flex-1 flex-col justify-between gap-4 p-5 sm:p-6">
-                    <div>
-                      <div className="mb-3 flex items-center gap-2.5">
-                        <span className="font-display text-[11px] font-semibold tabular-nums tracking-[0.14em] text-brand/90">
-                          {String(index + 2).padStart(2, "0")}
-                        </span>
-                        <span className="h-px w-5 bg-brand/50" aria-hidden />
-                        <span className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-white/40">
-                          {item.role}
-                        </span>
-                      </div>
-                      <h3 className="font-display text-lg font-semibold tracking-tight text-white sm:text-xl">
-                        {item.name}
-                      </h3>
-                      <p className="mt-3 text-sm leading-relaxed text-white/55">
-                        “{item.quote}”
-                      </p>
+                  <article className="group flex h-full min-h-[16rem] overflow-hidden rounded-[1.5rem] bg-white text-ink shadow-[0_24px_60px_-30px_rgba(0,0,0,0.55)] transition-transform duration-500 hover:-translate-y-1 sm:min-h-[18rem]">
+                    <div className="relative w-[40%] shrink-0 overflow-hidden sm:w-[42%]">
+                      <ProjectImage
+                        src={item.image}
+                        alt={item.imageAlt}
+                        fill
+                        tier="gallery"
+                        sizes="(max-width: 1024px) 40vw, 18vw"
+                        className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+                      />
                     </div>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
+
+                    <div className="flex flex-1 flex-col justify-between gap-4 p-5 sm:p-7">
+                      <div>
+                        <Stars rating={item.rating} />
+                        <p className="mt-4 text-[0.95rem] leading-relaxed text-ink-500 sm:text-base">
+                          “{item.quote}”
+                        </p>
+                      </div>
+                      <div className="border-t border-ink/8 pt-4">
+                        <p className="font-display text-base font-semibold text-ink">
+                          {item.name}
+                        </p>
+                        <p className="mt-0.5 text-sm text-ink-500">{item.role}</p>
+                      </div>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
       </Container>
     </section>
   );
