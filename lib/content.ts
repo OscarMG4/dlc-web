@@ -513,3 +513,32 @@ export const projectLocation = {
 export const projectMapEmbedUrl = `https://www.google.com/maps?q=${projectLocation.latitude},${projectLocation.longitude}&z=15&output=embed`;
 
 export const projectMapLinkUrl = `https://www.google.com/maps/search/?api=1&query=${projectLocation.latitude},${projectLocation.longitude}`;
+
+/** Preguntas frecuentes: visibles en web + schema FAQPage para Google. */
+export const faqs = [
+  {
+    question: "¿Dónde queda Finca Algarrobo?",
+    answer:
+      "Finca Algarrobo está en Capote, Chiclayo (Lambayeque). Es un condominio campestre a minutos de la ciudad, con venta directa de Grupo DLC.",
+  },
+  {
+    question: "¿De qué tamaño son los terrenos?",
+    answer:
+      "Los terrenos parten desde 500 m², pensados para casas de campo. Puedes revisar la lotización en el plano del proyecto.",
+  },
+  {
+    question: "¿Qué incluye la compra de un lote?",
+    answer:
+      "Incluye punto de agua en el lote, áreas comunes ejecutadas, ingreso controlado, y documentación con minuta y escritura pública elevada a registros públicos mediante acciones y derechos.",
+  },
+  {
+    question: "¿Cómo puedo visitar el proyecto u oficina?",
+    answer:
+      "Puedes agendar una visita guiada a Capote o ir a la oficina en Av. Antenor Orrego N° 101, Chiclayo. Atención de lunes a sábado, de 9:00 a.m. a 6:00 p.m., con cita previa.",
+  },
+  {
+    question: "¿Cómo contacto a Grupo DLC?",
+    answer:
+      "Escríbenos por WhatsApp, completa el formulario de la web o visita la oficina comercial en Chiclayo. Un asesor te orienta sobre lotes disponibles, precios y formas de pago.",
+  },
+] as const;

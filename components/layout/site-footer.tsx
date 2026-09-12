@@ -10,6 +10,7 @@ const links = [
   { href: "#reseñas", label: "Reseñas" },
   { href: "#nosotros", label: "Sobre nosotros" },
   { href: "#ubicacion", label: "Ubicación" },
+  { href: "#preguntas", label: "Preguntas" },
   { href: "#contacto", label: "Contacto" },
 ];
 

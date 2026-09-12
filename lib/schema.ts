@@ -1,4 +1,11 @@
-import { company, localSeo, mapLinkUrl, project } from "@/lib/content";
+import {
+  company,
+  faqs,
+  localSeo,
+  mapLinkUrl,
+  project,
+  projectLocation,
+} from "@/lib/content";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 function geoPoint(point: { latitude: number; longitude: number } | null) {
@@ -19,13 +26,30 @@ export function organizationSchema(): Record<string, unknown> {
     "@type": "RealEstateAgent",
     "@id": absoluteUrl("/#organization"),
     name: company.name,
+    alternateName: ["DLC", "Grupo DLC Chiclayo"],
     url: siteConfig.url,
     description: siteConfig.description,
     email: company.email,
     telephone: company.phoneE164,
     logo: absoluteUrl("/brand/dlc-logo-black.png"),
-    image: absoluteUrl("/projects/algarrobo/vista-aerea.webp"),
-    areaServed: `${company.city}, ${company.region}, ${company.country}`,
+    image: [
+      absoluteUrl("/projects/algarrobo/vista-aerea.webp"),
+      absoluteUrl("/brand/dlc-logo-black.png"),
+    ],
+    areaServed: [
+      {
+        "@type": "City",
+        name: company.city,
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: company.region,
+      },
+      {
+        "@type": "Place",
+        name: "Capote",
+      },
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: company.address,
@@ -49,6 +73,12 @@ export function organizationSchema(): Record<string, unknown> {
       company.social.instagram,
       company.social.tiktok,
     ],
+    knowsAbout: [
+      "Terrenos para casas de campo",
+      "Lotes en Capote Chiclayo",
+      "Condominios campestres",
+      "Finca Algarrobo",
+    ],
   };
 }
 
@@ -60,7 +90,23 @@ export function websiteSchema(): Record<string, unknown> {
     name: siteConfig.name,
     url: siteConfig.url,
     inLanguage: siteConfig.lang,
+    description: siteConfig.description,
     publisher: { "@id": absoluteUrl("/#organization") },
+  };
+}
+
+export function webPageSchema(): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": absoluteUrl("/#webpage"),
+    url: siteConfig.url,
+    name: siteConfig.title,
+    description: siteConfig.description,
+    inLanguage: siteConfig.lang,
+    isPartOf: { "@id": absoluteUrl("/#website") },
+    about: { "@id": absoluteUrl(`/#${project.slug}`) },
+    primaryImageOfPage: absoluteUrl(project.cover),
   };
 }
 
@@ -73,9 +119,14 @@ export function projectSchema(): Record<string, unknown> {
     description: project.summary,
     url: absoluteUrl("/#proyecto"),
     image: absoluteUrl(project.cover),
+    brand: {
+      "@type": "Brand",
+      name: company.name,
+    },
+    category: "Terrenos para casas de campo",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Capote, Chiclayo",
+      addressLocality: projectLocation.place,
       addressRegion: company.region,
       addressCountry: "PE",
     },
@@ -84,6 +135,22 @@ export function projectSchema(): Record<string, unknown> {
       "@type": "LocationFeatureSpecification",
       name: amenity.title,
       value: true,
+    })),
+  };
+}
+
+export function faqSchema(): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": absoluteUrl("/#faq"),
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
     })),
   };
 }

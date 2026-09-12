@@ -158,11 +158,17 @@ export function Hero() {
               variants={fadeUp}
               transition={transition}
             >
-              <span className="sr-only">{project.name}</span>
-              <span className="relative block h-10 w-[min(100%,220px)] min-[380px]:h-11 min-[380px]:w-[250px] sm:h-14 sm:w-[320px] md:h-16 md:w-[380px] lg:h-[4.25rem] lg:w-[min(100%,420px)]">
+              <span className="sr-only">
+                Finca Algarrobo — Terrenos desde 500 m² para casas de campo en
+                Capote, Chiclayo | Grupo DLC
+              </span>
+              <span
+                aria-hidden
+                className="relative block h-10 w-[min(100%,220px)] min-[380px]:h-11 min-[380px]:w-[250px] sm:h-14 sm:w-[320px] md:h-16 md:w-[380px] lg:h-[4.25rem] lg:w-[min(100%,420px)]"
+              >
                 <Image
                   src={project.logo}
-                  alt={project.name}
+                  alt=""
                   fill
                   priority
                   sizes="(max-width: 640px) 250px, (max-width: 1024px) 380px, 420px"

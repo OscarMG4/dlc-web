@@ -7,8 +7,8 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { ContactFormProvider } from "@/components/widgets/contact-form-provider";
 import { WhatsAppProvider } from "@/components/widgets/whatsapp-provider";
-import { organizationSchema, projectSchema, websiteSchema } from "@/lib/schema";
-import { siteConfig } from "@/lib/site";
+import { organizationSchema, projectSchema, websiteSchema, webPageSchema, faqSchema } from "@/lib/schema";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const jost = Jost({
@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
   applicationName: siteConfig.name,
+  category: "real estate",
   alternates: {
     canonical: "/",
   },
@@ -42,11 +43,20 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: siteConfig.title,
     description: siteConfig.description,
+    images: [
+      {
+        url: absoluteUrl("/opengraph-image.png"),
+        width: 1200,
+        height: 630,
+        alt: siteConfig.title,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
+    images: [absoluteUrl("/opengraph-image.png")],
     ...(siteConfig.twitterHandle
       ? {
           site: siteConfig.twitterHandle,
@@ -94,7 +104,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </ContactFormProvider>
           </WhatsAppProvider>
         </SmoothScroll>
-        <JsonLd schema={[organizationSchema(), websiteSchema(), projectSchema()]} />
+        <JsonLd
+          schema={[
+            organizationSchema(),
+            websiteSchema(),
+            webPageSchema(),
+            projectSchema(),
+            faqSchema(),
+          ]}
+        />
       </body>
     </html>
   );

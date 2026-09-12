@@ -44,7 +44,7 @@ export function Contact() {
     >
       <Container className="relative">
         <SectionHeading
-          index="08"
+          index="09"
           eyebrow="Contacto"
           title="Conversemos sobre tu próxima inversión"
           description="Déjanos tus datos y un asesor te contactará con lotes, precios y formas de pago."

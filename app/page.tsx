@@ -1,6 +1,7 @@
 import { About } from "@/components/sections/about";
 import { ClosingCta } from "@/components/sections/closing-cta";
 import { Contact } from "@/components/sections/contact";
+import { Faq } from "@/components/sections/faq";
 import { Hero } from "@/components/sections/hero";
 import { InvestmentValue } from "@/components/sections/investment-value";
 import { Location } from "@/components/sections/location";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <About />
       <Location />
       <ClosingCta />
+      <Faq />
       <Contact />
     </>
   );
