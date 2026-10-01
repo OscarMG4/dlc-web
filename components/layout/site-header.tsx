@@ -2,11 +2,23 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  type MouseEvent,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { CloseIcon } from "@/components/icons";
 import { ButtonLink } from "@/components/ui/button";
 import { company } from "@/lib/content";
 import { easeOutExpo } from "@/lib/motion";
+import {
+  normalizeReferralCode,
+  panelUrl,
+  partnersConfig,
+  readStoredReferral,
+} from "@/lib/partners";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -31,6 +43,17 @@ export function SiteHeader() {
   const [pill, setPill] = useState({ left: 0, width: 0, ready: false });
   const navListRef = useRef<HTMLUListElement>(null);
   const shouldReduceMotion = useReducedMotion();
+  const joinHref = panelUrl("/registro/");
+  const loginHref = panelUrl("/login/");
+
+  const attachReferral = (event: MouseEvent<HTMLAnchorElement>) => {
+    const fromQuery = new URLSearchParams(window.location.search).get(
+      partnersConfig.referralParam
+    );
+    const referral = normalizeReferralCode(fromQuery) ?? readStoredReferral();
+    if (referral) event.currentTarget.href = panelUrl("/registro/", referral);
+    setIsMenuOpen(false);
+  };
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -199,6 +222,24 @@ export function SiteHeader() {
             </nav>
 
             <div className="relative z-[1] flex shrink-0 items-center gap-1.5 sm:gap-2">
+              <a
+                href={loginHref}
+                className="hidden rounded-full px-3 py-2 font-display text-[12px] font-medium tracking-tight text-white/70 transition-colors duration-300 hover:text-white xl:inline-flex"
+              >
+                Iniciar sesión
+              </a>
+
+              <a
+                href={joinHref}
+                onClick={attachReferral}
+                className={cn(
+                  "hidden rounded-full px-4 py-2.5 font-display text-[11px] font-semibold uppercase tracking-[0.08em] text-white ring-1 transition-all duration-300 hover:bg-white hover:text-ink lg:inline-flex",
+                  scrolled ? "ring-white/20" : "bg-black/30 ring-white/20 backdrop-blur-md"
+                )}
+              >
+                Únete
+              </a>
+
               <ButtonLink
                 href="#contacto"
                 size="sm"
@@ -347,7 +388,23 @@ export function SiteHeader() {
                 );
               })}
 
-              <div className="mt-2 border-t border-white/10 p-2 pt-3">
+              <div className="mt-2 space-y-2 border-t border-white/10 p-2 pt-3">
+                <div className="grid grid-cols-2 gap-2">
+                  <a
+                    href={joinHref}
+                    onClick={attachReferral}
+                    className="flex min-h-12 items-center justify-center rounded-2xl bg-white/[0.06] font-display text-sm font-semibold text-white ring-1 ring-white/10 transition-colors hover:bg-white hover:text-ink"
+                  >
+                    Únete como socio
+                  </a>
+                  <a
+                    href={loginHref}
+                    onClick={closeMenu}
+                    className="flex min-h-12 items-center justify-center rounded-2xl font-display text-sm font-medium text-white/75 ring-1 ring-white/10 transition-colors hover:bg-white/[0.06] hover:text-white"
+                  >
+                    Iniciar sesión
+                  </a>
+                </div>
                 <ButtonLink
                   href="#contacto"
                   size="lg"

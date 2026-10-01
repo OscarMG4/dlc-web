@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { PageIntro } from "@/components/ui/page-intro";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { ContactFormProvider } from "@/components/widgets/contact-form-provider";
+import { ReferralCapture } from "@/components/widgets/referral-capture";
 import { WhatsAppProvider } from "@/components/widgets/whatsapp-provider";
 import { organizationSchema, projectSchema, websiteSchema, webPageSchema, faqSchema } from "@/lib/schema";
 import { absoluteUrl, siteConfig } from "@/lib/site";
@@ -94,6 +95,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <noscript>
           <style>{`[data-reveal]{opacity:1!important;transform:none!important;filter:none!important}`}</style>
         </noscript>
+        <ReferralCapture />
         <SmoothScroll>
           <WhatsAppProvider>
             <ContactFormProvider>
