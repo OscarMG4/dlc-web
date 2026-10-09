@@ -11,7 +11,8 @@ export const company = {
   email: "Gerenciacomercial.dlc@gmail.com",
   phoneDisplay: "+51 983 771 968",
   phoneE164: "+51983771968",
-  whatsappNumber: "51983771968",
+  whatsappNumber: "51976330336",
+  whatsappDisplay: "+51 976 330 336",
   whatsappMessage:
     "Hola, vengo de la web de Grupo DLC y quiero información sobre los lotes de Finca Algarrobo.",
   social: {
@@ -55,38 +56,11 @@ export const localSeo: {
 
 export const whatsappQuickQuestions = [
   {
-    id: "general",
-    label: "Información sobre Finca Algarrobo",
-    description: `Conocer el proyecto, áreas comunes y terrenos ${lotOffer.from} ${lotOffer.forHomes}`,
-    message: company.whatsappMessage,
-  },
-  {
-    id: "pricing",
-    label: "Precios y formas de pago",
-    description: "Consultar valores y opciones de pago disponibles",
-    message:
-      "Hola, quiero conocer precios y formas de pago de los lotes en Finca Algarrobo.",
-  },
-  {
     id: "visit",
     label: "Agendar una visita",
     description: "Coordinar visita al condominio u oficina en Chiclayo",
     message:
       "Hola, me gustaría agendar una visita a Finca Algarrobo. ¿Qué días tienen disponibles?",
-  },
-  {
-    id: "available",
-    label: "Lotes disponibles",
-    description: "Saber qué lotes quedan en venta",
-    message:
-      "Hola, quiero saber qué lotes están disponibles actualmente en Finca Algarrobo.",
-  },
-  {
-    id: "legal",
-    label: "Documentación y proceso de compra",
-    description: "Habilitación, papeles y pasos para comprar",
-    message:
-      "Hola, tengo consultas sobre la documentación y el proceso de compra de un lote en Finca Algarrobo.",
   },
 ] as const;
 

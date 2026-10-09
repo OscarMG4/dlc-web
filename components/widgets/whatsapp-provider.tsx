@@ -11,7 +11,7 @@ import {
   type ReactNode,
 } from "react";
 import { CloseIcon, WhatsAppIcon } from "@/components/icons";
-import { Button, buttonClasses } from "@/components/ui/button";
+import { buttonClasses } from "@/components/ui/button";
 import {
   buildWhatsAppUrl,
   company,
@@ -44,13 +44,9 @@ function openWhatsApp(message: string) {
 
 export function WhatsAppProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [customMessage, setCustomMessage] = useState("");
   const shouldReduceMotion = useReducedMotion();
 
-  const closePicker = useCallback(() => {
-    setIsOpen(false);
-    setCustomMessage("");
-  }, []);
+  const closePicker = useCallback(() => setIsOpen(false), []);
 
   const openPicker = useCallback(() => setIsOpen(true), []);
 
@@ -69,13 +65,6 @@ export function WhatsAppProvider({ children }: { children: ReactNode }) {
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [closePicker, isOpen]);
-
-  const sendCustom = () => {
-    const text = customMessage.trim();
-    if (!text) return;
-    openWhatsApp(text);
-    closePicker();
-  };
 
   const sendPreset = (message: string) => {
     openWhatsApp(message);
@@ -127,7 +116,7 @@ export function WhatsAppProvider({ children }: { children: ReactNode }) {
                       Escríbenos por WhatsApp
                     </h2>
                     <p className="mt-1 text-sm text-ink-500">
-                      Elige una consulta frecuente o redacta tu mensaje.
+                      Coordina tu visita con un asesor.
                     </p>
                   </div>
                 </div>
@@ -143,11 +132,7 @@ export function WhatsAppProvider({ children }: { children: ReactNode }) {
               </div>
 
               <div className="overflow-y-auto px-6 py-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-ink-300">
-                  Consultas frecuentes
-                </p>
-
-                <ul className="mt-3 space-y-2">
+                <ul className="space-y-2">
                   {whatsappQuickQuestions.map((question) => (
                     <li key={question.id}>
                       <button
@@ -165,37 +150,10 @@ export function WhatsAppProvider({ children }: { children: ReactNode }) {
                     </li>
                   ))}
                 </ul>
-
-                <div className="mt-6 border-t border-ink/8 pt-6">
-                  <label
-                    htmlFor="whatsapp-custom-message"
-                    className="text-xs font-semibold uppercase tracking-[0.15em] text-ink-300"
-                  >
-                    Mensaje personalizado
-                  </label>
-                  <textarea
-                    id="whatsapp-custom-message"
-                    rows={4}
-                    value={customMessage}
-                    onChange={(event) => setCustomMessage(event.target.value)}
-                    placeholder="Escribe aquí tu consulta..."
-                    className="mt-3 w-full resize-none rounded-2xl border border-ink-100 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-300 transition-colors focus:border-[#25D366] focus:outline-none"
-                  />
-                  <Button
-                    type="button"
-                    size="lg"
-                    disabled={!customMessage.trim()}
-                    onClick={sendCustom}
-                    className="mt-3 w-full bg-[#25D366] text-white shadow-[0_8px_28px_-8px_rgba(37,211,102,0.65)] hover:bg-[#1fb855] disabled:opacity-50"
-                  >
-                    <WhatsAppIcon className="size-4" />
-                    Enviar mensaje personalizado
-                  </Button>
-                </div>
               </div>
 
               <p className="border-t border-ink/8 px-6 py-3 text-center text-[11px] text-ink-300">
-                Te atiende {company.name} · {company.phoneDisplay}
+                Te atiende {company.name} · {company.whatsappDisplay}
               </p>
             </motion.div>
           </motion.div>
