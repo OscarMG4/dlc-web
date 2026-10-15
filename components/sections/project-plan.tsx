@@ -122,7 +122,7 @@ export function ProjectPlan() {
             aria-label="Ampliar plano del proyecto"
             className="group relative mx-auto block w-full max-w-5xl cursor-zoom-in overflow-hidden rounded-[1.35rem] bg-[#0c0b0a] shadow-elevated ring-1 ring-black/[0.05] transition-transform duration-500 hover:-translate-y-1"
           >
-            <div className="relative aspect-[1024/724] w-full">
+            <div className="relative aspect-[2400/1708] w-full">
               <ProjectImage
                 src={project.plan}
                 alt={project.planAlt}
@@ -174,7 +174,7 @@ export function ProjectPlan() {
             >
               <div
                 className="relative mx-auto w-full"
-                style={{ aspectRatio: "1024 / 724" }}
+                style={{ aspectRatio: "2400 / 1708" }}
               >
                 <ProjectImage
                   src={project.plan}
